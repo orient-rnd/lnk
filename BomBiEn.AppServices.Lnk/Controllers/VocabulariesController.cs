@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using BomBiEn.Infrastructure.Queries;
 using BomBiEn.Infrastructure.Commands;
 using AutoMapper;
-using BomBiEn.Queries.FlashCards;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,11 +33,8 @@ namespace BomBiEn.AppServices.Lnk.Controllers
         }
 
         public IActionResult Search([FromQuery]string oq)
-        {
-            var request = new GetAllSuggestionWordsQuery() { Word = string.Format("{0}", oq.Trim()) };
-            var suggestionWords = _queryBus.Send<GetAllSuggestionWordsQuery, IEnumerable<SuggestionWord>>(request).ToList().Distinct().OrderBy(n => n.EnglishContent.Length);
-
-            return View(suggestionWords);
+        {            
+            return View();
         }
     }
 }
