@@ -19,13 +19,11 @@ using BomBiEn.Domain.Emails.Services;
 using BomBiEn.Domain.Users.Models;
 using BomBiEn.Domain.Users.Services;
 using BomBiEn.ExternalApis.Domains;
-using BomBiEn.Infrastructure.Azure.Blobs;
 using BomBiEn.Infrastructure.Commands;
 using BomBiEn.Infrastructure.Connectors;
 using BomBiEn.Infrastructure.Events;
 using BomBiEn.Infrastructure.Identity.MongoDb;
 using BomBiEn.Infrastructure.MongoDb;
-using BomBiEn.Infrastructure.PdfGenerator;
 using BomBiEn.Infrastructure.Queries;
 using BomBiEn.Infrastructure.TemplateEngines;
 using BomBiEn.Queries.Agencies;
@@ -80,7 +78,6 @@ namespace BomBiEn.AppServices.Core.Configs
             containerBuilder.RegisterType<WorkContextProvider>().As<IWorkContextProvider>();
 
             ConfigureMongoDbServices(containerBuilder);
-            ConfigureAzureServices(containerBuilder);
             ConfigureIdentityServices(containerBuilder);
             ConfigureMediaServices(containerBuilder);
             ConfigureCommandsServices(containerBuilder);
@@ -90,7 +87,6 @@ namespace BomBiEn.AppServices.Core.Configs
             ConfigureEmailsServices(containerBuilder);
             ConfigureRestConnectorServices(containerBuilder);
             ConfigureAgenciesServices(containerBuilder);
-            ConfigurePdfGeneratorServices(containerBuilder);
             CategoriesAutoMapperConfig(containerBuilder);
             ArticlesAutoMapperConfig(containerBuilder);
             SentencesAutoMapperConfig(containerBuilder);
@@ -144,18 +140,6 @@ namespace BomBiEn.AppServices.Core.Configs
                         (p, c) => c.Resolve<IOptions<MongoDbConfig>>().Value.DefaultLogsConnectionString)
                 })
                 .As<IMongoDbLogsRepository>();
-        }
-
-        private static void ConfigureAzureServices(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.RegisterType<AzureBlobProvider>()
-                .WithParameters(new[]
-                {
-                    new ResolvedParameter(
-                        (p, c) => p.Name == "azureStorageConnectionString",
-                        (p, c) => c.Resolve<IOptions<AzureConfig>>().Value.AzureStorageConnectionString)
-                })
-                .As<IAzureBlobProvider>();
         }
 
         private static void ConfigureMediaServices(ContainerBuilder containerBuilder)
@@ -274,11 +258,6 @@ namespace BomBiEn.AppServices.Core.Configs
             containerBuilder.RegisterType<AgencyCommandHandler>().As<ICommandHandler<CreateAgencyCommand>>();
             containerBuilder.RegisterType<AgencyCommandHandler>().As<ICommandHandler<UpdateAgencyCommand>>();
             containerBuilder.RegisterType<AgencyCommandHandler>().As<ICommandHandler<DeleteAgencyCommand>>();
-        }
-
-        private static void ConfigurePdfGeneratorServices(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.RegisterType<PdfGeneratorService>().As<IPdfGeneratorService>();
         }
 
         private static void CategoriesAutoMapperConfig(ContainerBuilder containerBuilder)

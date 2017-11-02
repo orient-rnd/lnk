@@ -15,12 +15,9 @@
     <ProjectReference Include="..\BomBiEn.CommandHandlers\BomBiEn.CommandHandlers.csproj" />
     <ProjectReference Include="..\BomBiEn.Commands\BomBiEn.Commands.csproj" />
     <ProjectReference Include="..\BomBiEn.Domain\BomBiEn.Domain.csproj" />
-    <ProjectReference Include="..\BomBiEn.ExternalApis\BomBiEn.ExternalApis.csproj" />
     <ProjectReference Include="..\BomBiEn.Infrastructure\BomBiEn.Infrastructure.csproj" />
-    <ProjectReference Include="..\BomBiEn.Infrastructure.Azure\BomBiEn.Infrastructure.Azure.csproj" />
     <ProjectReference Include="..\BomBiEn.Infrastructure.Identity.MongoDb\BomBiEn.Infrastructure.Identity.MongoDb.csproj" />
     <ProjectReference Include="..\BomBiEn.Infrastructure.MongoDb\BomBiEn.Infrastructure.MongoDb.csproj" />
-    <ProjectReference Include="..\BomBiEn.Infrastructure.PdfGenerator\BomBiEn.Infrastructure.PdfGenerator.csproj" />
     <ProjectReference Include="..\BomBiEn.Queries\BomBiEn.Queries.csproj" />
     <ProjectReference Include="..\BomBiEn.QueryHandlers\BomBiEn.QueryHandlers.csproj" />
     <ProjectReference Include="..\BomBiEn.Shared\BomBiEn.Shared.csproj" />
