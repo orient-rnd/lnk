@@ -68,7 +68,7 @@ namespace BomBiEn.AppServices.Core.Configs
             var containerBuilder = new ContainerBuilder();
             containerBuilder.Populate(services);
 
-            containerBuilder.RegisterType<WorkContextProvider>().As<IWorkContextProvider>();
+            //containerBuilder.RegisterType<WorkContextProvider>().As<IWorkContextProvider>();
 
             ConfigureMongoDbServices(containerBuilder);
             ConfigureIdentityServices(containerBuilder);
