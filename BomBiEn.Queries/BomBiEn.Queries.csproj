@@ -16,4 +16,8 @@
     <ProjectReference Include="..\BomBiEn.Shared\BomBiEn.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FlashCards\" />
+  </ItemGroup>
+
 </Project>

@@ -40,10 +40,6 @@ using BomBiEn.CommandHandlers.Articles;
 using BomBiEn.QueryHandlers.Articles;
 using BomBiEn.Commands.Articles;
 using BomBiEn.Queries.Articles;
-using BomBiEn.CommandHandlers.FlashCards;
-using BomBiEn.QueryHandlers.FlashCards;
-using BomBiEn.Commands.FlashCards;
-using BomBiEn.Queries.FlashCards;
 using BomBiEn.CommandHandlers.Sentences;
 using BomBiEn.Commands.Sentences;
 using BomBiEn.Queries.Sentences;
@@ -291,24 +287,7 @@ namespace BomBiEn.AppServices.Core.Configs
 
         private static void FlashCardsAutoMapperConfig(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<CreateFlashCardCommand>>();
-            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<UpdateFlashCardCommand>>();
-            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<DeleteFlashCardCommand>>();
-            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<SyncViewNumberCommand>>();
 
-            containerBuilder.RegisterType<FlashCardQueryHandler>().As<IQueryHandler<ListFlashCardsQuery, PagedQueryResult<FlashCardOverview>>>();
-            containerBuilder.RegisterType<FlashCardQueryHandler>().As<IQueryHandler<GetFlashCardDetailsQuery, FlashCardDetails>>();
-            containerBuilder.RegisterType<FlashCardQueryHandler>().As<IQueryHandler<GetAllFlashCardsQuery, IEnumerable<FlashCardOverview>>>();
-            containerBuilder.RegisterType<FlashCardQueryHandler>().As<IQueryHandler<GetAllSuggestionWordsQuery, IEnumerable<SuggestionWord>>>();
-
-            //categories
-            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<GetAllFlashCardCategoriesQuery, IEnumerable<FlashCardCategoryOverview>>>();
-            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>>();
-            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>>();
-
-            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<CreateFlashCardCategoryCommand>>();
-            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<UpdateFlashCardCategoryCommand>>();
-            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<DeleteFlashCardCategoryCommand>>();
         }
     }
 }
