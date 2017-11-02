@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>BomBiEn.ExternalApis</AssemblyName>
+    <PackageId>BomBiEn.ExternalApis</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BomBiEn.Domain\BomBiEn.Domain.csproj" />
+    <ProjectReference Include="..\BomBiEn.Infrastructure\BomBiEn.Infrastructure.csproj" />
+    <ProjectReference Include="..\BomBiEn.Infrastructure.MongoDb\BomBiEn.Infrastructure.MongoDb.csproj" />
+    <ProjectReference Include="..\BomBiEn.Shared\BomBiEn.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="1.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>
