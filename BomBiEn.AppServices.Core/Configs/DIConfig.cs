@@ -18,7 +18,6 @@ using BomBiEn.Commands.Users;
 using BomBiEn.Domain.Emails.Services;
 using BomBiEn.Domain.Users.Models;
 using BomBiEn.Domain.Users.Services;
-using BomBiEn.ExternalApis.Domains;
 using BomBiEn.Infrastructure.Commands;
 using BomBiEn.Infrastructure.Connectors;
 using BomBiEn.Infrastructure.Events;
@@ -57,13 +56,7 @@ namespace BomBiEn.AppServices.Core.Configs
         public static IServiceProvider ConfigureServices(IServiceCollection services, IConfigurationRoot configuration, Action<ContainerBuilder> diSetupAction = null, Action<IMapperConfigurationExpression, IAssetUrlResolver, IQueryBus> autoMapperSetupAction = null)
         {
             services.Configure<MongoDbConfig>(configuration.GetSection("MongoDb"));
-            services.Configure<AzureConfig>(configuration.GetSection("Azure"));
-            services.Configure<GoogleWebFontsServiceConfig>(configuration.GetSection("GoogleWebFontsService"));
-            services.Configure<ExportImportSiteConfig>(configuration.GetSection("ExportImportSiteAsPackage"));
-            services.Configure<ApiConfig>(configuration.GetSection("Api"));
             services.Configure<DashboardConfig>(configuration.GetSection("Dashboard"));
-            services.Configure<ThirdPartyDomainApiConfig>(configuration.GetSection("ThirdPartyDomainAPI"));
-            services.Configure<ThirdPartyEmailApiConfig>(configuration.GetSection("ThirdPartyEmailAPI"));
 
             services.AddIdentity<User, Role>(
                 identityOptions =>

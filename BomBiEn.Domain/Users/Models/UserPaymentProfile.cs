@@ -42,12 +42,9 @@ namespace BomBiEn.Domain.Users.Models
         {
             get
             {
-                return $"https://BomBiEn0prod.blob.core.windows.net/payment-methods-logos/{PaymentMethodName.ToLower()}.png";
+                return $".png";
             }
-        }
-
-        [BsonRepresentation(BsonType.String)]
-        public PaymentProfileStatus Status { get; set; }
+        }        
 
         public bool IsDefault { get; set; }
     }
