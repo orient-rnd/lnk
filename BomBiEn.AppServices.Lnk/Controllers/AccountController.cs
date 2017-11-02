@@ -130,5 +130,10 @@ namespace BomBiEn.AppServices.Lnk.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Vocabularies");
         }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

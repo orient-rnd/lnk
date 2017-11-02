@@ -40,7 +40,13 @@
                 <li><a href="~/Pronounce">Pronounce</a></li>
                 @if (user != null)
                 {
-                    <li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>
+                    @*<li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>*@
+                    <li><a class= "material-icons" href='#' data-activates='dropdown1'>person</a></li>
+  <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">Edit User</a></li>
+                        <li><a href="#!">Logout</a></li>
+                    </ul>
                 }
                 else
                 {
@@ -54,7 +60,14 @@
                 <li><a href="~/Pronounce">Pronounce</a></li>
                 @if (user != null)
                 {
-                    <li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>
+                    @*<li><a href="#" title="Logout"><i class="material-icons" data-activates='dropdown1'>person</i></a></li> //~/Account/Logout*@
+                      <!-- Dropdown Trigger -->
+                    <li><a class="material-icons" href='#' data-activates='dropdown1'>person</a></li>
+  <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">Edit User</a></li>
+                        <li><a href="#!">Logout</a></li>
+                    </ul>
                 }
                 else
                 {
@@ -142,11 +155,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42446070-5"></script>
     <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-          gtag('config', 'UA-42446070-5');
+        gtag('config', 'UA-42446070-5');
     </script>
 </body>
 </html>
