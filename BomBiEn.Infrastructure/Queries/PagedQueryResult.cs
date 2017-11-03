@@ -17,6 +17,9 @@ namespace BomBiEn.Infrastructure.Queries
         private readonly int _page;
         private readonly int _pageSize;
         private readonly int _pageCount;
+        private long totalItemCount;
+        private int page;
+        private int pageSize;
 
         public PagedQueryResult(IEnumerable<T> items, long totalItemCount, int page, int pageSize)
         {

@@ -122,7 +122,7 @@ namespace BomBiEn.AppServices.Lnk
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Vocabularies}/{action=Index}/{id?}");
+                    template: "{controller=Flashcards}/{action=Index}/{id?}");
             });
         }
     }

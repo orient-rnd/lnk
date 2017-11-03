@@ -3,26 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BomBiEn.Queries.Users;
 using BomBiEn.Infrastructure.Queries;
 using BomBiEn.Infrastructure.Commands;
 using AutoMapper;
-using BomBiEn.Queries.FlashCards;
-using BomBiEn.Queries.Categories;
-using BomBiEn.Queries.Sentences;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BomBiEn.AppServices.Lnk.Controllers
 {
-    public class FlashCardsController : Controller
+    public class CategoriesController : Controller
     {
         private readonly IQueryBus _queryBus;
         private readonly ICommandBus _commandBus;
         private readonly IMapper _mapper;
 
-        public FlashCardsController(
-            IQueryBus queryBus,
+        public CategoriesController(IQueryBus queryBus,
             ICommandBus commandBus,
             IMapper mapper)
         {
@@ -31,12 +26,13 @@ namespace BomBiEn.AppServices.Lnk.Controllers
             _mapper = mapper;
         }
 
+        // GET: /<controller>/
         public IActionResult Index()
         {
-            var query = new ListFlashCategoriesQuery() { UserEmail = "nguyenhuuloc304@gmail.com" };
-            var flashCardCategories = _queryBus.Send<ListFlashCategoriesQuery, PagedQueryResult<FlashcardCategoryOverview>>(query);
-            var neededSentences = flashCardCategories.Items.ToList();
-            return View(neededSentences);
-        }        
+            //var query = new ListSentencesQuery() { Category = "2aae84001bb542b3825d73de31357c4f" };
+            //var sentences = _queryBus.Send<ListSentencesQuery, PagedQueryResult<SentenceOverview>>(query);
+            //var neededSentences = sentences.Items.ToList();
+            return View();
+        }
     }
 }
