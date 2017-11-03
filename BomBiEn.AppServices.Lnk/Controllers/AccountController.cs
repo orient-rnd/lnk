@@ -11,6 +11,8 @@ using BomBiEn.Domain.Emails.Services;
 using BomBiEn.AppServices.Lnk.Models.Account;
 using System.Net;
 using BomBiEn.Commands.Users;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -121,6 +123,36 @@ namespace BomBiEn.AppServices.Lnk.Controllers
                 }
             }
 
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword(ForgotPasswordModel model)
+        {
+            ViewBag.temp = true;
+            string newPassword = "Huycautac1995";//default password
+            var user =  _userService.FindByEmailAsync(model.UserName).Result;
+            if (user != null)
+            { 
+                var token =  _userService.GeneratePasswordResetTokenAsync(user).Result;
+                var result = _userService.ResetPasswordAsync(user, token, newPassword).Result;
+                ModelState.AddModelError("Email", "We had sent a request to your email to change your password. Please check it!");
+            }
+            else
+            {
+                ModelState.AddModelError("Email", "We had sent a request to your email to change your password. Please check it!");
+                return View(model);
+            }
+            
+            
             return View(model);
         }
 
