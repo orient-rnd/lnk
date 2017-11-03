@@ -39,9 +39,19 @@
                 <li><a href="~/Flashcards">Flash cards</a></li>
                 <li><a asp-area="" asp-controller="Categories" asp-action="CreateCategory">CreateCategory</a></li>
                 <li><a href="~/Pronounce">Pronounce</a></li>
+                <li><a href="~/Home/About">About</a></li>
                 @if (user != null)
                 {
-                    <li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>
+                    @*<li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>*@
+                    <li>
+                        <a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a asp-controller="Account" asp-action="Edit">Edit User</a></li>
+                            <li><a href="~/Account/Logout">Logout</a></li>
+                        </ul>
+                    </li>
+  <!-- Dropdown Structure -->
+
                 }
                 else
                 {
@@ -56,11 +66,27 @@
                 <li><a href="~/Pronounce">Pronounce</a></li>
                 @if (user != null)
                 {
-                    <li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>
+                @*<li><a href="#" title="Logout"><i class="material-icons" data-activates='dropdown1'>person</i></a></li> //~/Account/Logout*@
+                      <!-- Dropdown Trigger -->
+                <li>
+                    <a class="material-icons" href='#' data-activates='dropdown1'>person</a>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">Edit User</a></li>
+                        <li><a href="#!">Logout</a></li>
+                    </ul>
+                </li>
+                    @*<li>
+                        <a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a asp-controller="Account" asp-action="Edit">Edit User</a></li>
+                            <li><a href="~/Account/Logout">Logout</a></li>
+                        </ul>
+                    </li>*@
+  <!-- Dropdown Structure -->
                 }
                 else
                 {
-                    <li><a href="~/Account/login">Login</a></li>
+                <li><a href="~/Account/login">Login</a></li>
                 }
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -68,8 +94,19 @@
     </nav>
 
     @RenderBody()
-
+    <div style="margin-top: 100px;"></div>
     <footer class="page-footer orange">
+        @*<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>*@
+
+        <!-- Dropdown Structure -->
+        @*<ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">three</a></li>
+                <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+            </ul>*@
         @*<div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -144,11 +181,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42446070-5"></script>
     <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-          gtag('config', 'UA-42446070-5');
+        gtag('config', 'UA-42446070-5');
     </script>
 </body>
 </html>
