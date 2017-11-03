@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LNK.Commands\LNK.Commands.csproj" />
+    <ProjectReference Include="..\LNK.Domain\LNK.Domain.csproj" />
+    <ProjectReference Include="..\LNK.Infrastructure.MongoDb\LNK.Infrastructure.MongoDb.csproj" />
+    <ProjectReference Include="..\LNK.Queries\LNK.Queries.csproj" />
+  </ItemGroup>
+
+</Project>

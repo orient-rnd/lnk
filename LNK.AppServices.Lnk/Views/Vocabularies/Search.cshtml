@@ -1,0 +1,60 @@
+﻿@using LNK.Queries.FlashCards
+@model IEnumerable<SuggestionWord>
+@{
+    ViewData["Title"] = "Vocabularies";
+    var searchKey = Context.Request.Query["Search"];
+}
+
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br />
+        <form method="get" action="~/Vocabularies/Search">
+            <nav style="background-color:white;">
+                <div class="nav-wrapper">
+
+                    <div class="input-field">
+                        <input id="search" name="oq" type="search" value="@searchKey" placeholder="Type any vocabulary or sentence you want to learn ...">
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+
+                </div>
+            </nav>
+            <br />
+            <div class="row center">
+                <button href="#" type="submit" id="download-button" class="btn-large waves-effect waves-light orange">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <ul class="collection">
+                @foreach (var item in Model)
+                {
+                    <li class="collection-item avatar">
+                        @*<img src="images/yuna.jpg" alt="" class="circle">*@
+                        @*<span class="title">Title</span>*@
+                        @if (@item.LinkAudio.Count > 0)
+                        {
+                            <audio controls style="width: 100%;">
+                                <source src="@item.LinkAudio[0]" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        }
+
+                        <p>
+                            @Html.Raw(item.EnglishContent)
+                        </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                }
+            </ul>
+            <!--   Icon Section   -->
+
+        </div>
+        <br><br>
+    </div>
+</div>
+
