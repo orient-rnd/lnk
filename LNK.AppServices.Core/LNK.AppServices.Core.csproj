@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LNK.CommandHandlers\LNK.CommandHandlers.csproj" />
+    <ProjectReference Include="..\LNK.Infrastructure\LNK.Infrastructure.csproj" />
+    <ProjectReference Include="..\LNK.QueryHandlers\LNK.QueryHandlers.csproj" />
+  </ItemGroup>
+
+</Project>

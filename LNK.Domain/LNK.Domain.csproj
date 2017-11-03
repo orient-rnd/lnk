@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="MongoDB.Bson" Version="2.4.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LNK.Infrastructure.Identity.MongoDb\LNK.Infrastructure.Identity.MongoDb.csproj" />
+    <ProjectReference Include="..\LNK.Infrastructure.MongoDb\LNK.Infrastructure.MongoDb.csproj" />
+    <ProjectReference Include="..\LNK.Infrastructure\LNK.Infrastructure.csproj" />
+    <ProjectReference Include="..\LNK.Shared\LNK.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Identity.Core">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.identity.core\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Identity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LNK.AppServices.Core\LNK.AppServices.Core.csproj" />
+    <ProjectReference Include="..\LNK.Commands\LNK.Commands.csproj" />
+    <ProjectReference Include="..\LNK.Domain\LNK.Domain.csproj" />
+    <ProjectReference Include="..\LNK.Infrastructure\LNK.Infrastructure.csproj" />
+    <ProjectReference Include="..\LNK.Queries\LNK.Queries.csproj" />
+  </ItemGroup>
+
+</Project>
