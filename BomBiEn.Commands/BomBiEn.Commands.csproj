@@ -21,8 +21,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FlashCards\" />
-  </ItemGroup>
-
 </Project>

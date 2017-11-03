@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="WebApis\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
