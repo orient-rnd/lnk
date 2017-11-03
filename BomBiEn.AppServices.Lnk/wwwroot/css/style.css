@@ -17,3 +17,14 @@
 .lnk-dashed {
     border: dashed 2px #039be5;
 }
+
+.abouttitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.aboutimgsize{
+    width: 128px;
+    height: 128px!important;
+}
