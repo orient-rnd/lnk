@@ -61,7 +61,7 @@ namespace BomBiEn.AppServices.Lnk.Controllers
         {
             var signUpCommand = new SignUpCommand() { Email = request.UserName, Password = request.Password };
             _commandBus.Send(signUpCommand);
-
+            
             var userResponse = new UserResponseModel() { Status = Shared.Enums.UserStatus.Approved };
             var result = await _userService.SignInAsync(request.UserName, request.Password, true);
             if (result.Succeeded)
