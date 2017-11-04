@@ -12,7 +12,7 @@ using BomBiEn.Queries.FlashCards;
 namespace BomBiEn.QueryHandlers.FlashCards
 {
     public class FlashCardCategoryQueryHandler :
-        IQueryHandler<ListFlashCategoriesQuery, PagedQueryResult<FlashcardCategoryOverview>>
+        IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>
     {
         private readonly IMapper _mapper;
         private readonly IMongoDbReadRepository _readRepository;
@@ -25,7 +25,7 @@ namespace BomBiEn.QueryHandlers.FlashCards
             _readRepository = readRepository;
         }
 
-        public PagedQueryResult<FlashcardCategoryOverview> Handle(ListFlashCategoriesQuery query)
+        public PagedQueryResult<FlashCardCategoryOverview> Handle(ListFlashCardCategoriesQuery query)
         {
             var builder = Builders<FlashCardCategory>.Filter;
             var filter = builder.Empty;
@@ -33,12 +33,12 @@ namespace BomBiEn.QueryHandlers.FlashCards
             var packageSentences = _readRepository.Find(filter);
             var totalItemCount = packageSentences.Count();
 
-            var flashcardCategoryOverview = _mapper.Map<IEnumerable<FlashcardCategoryOverview>>(packageSentences
+            var flashcardCategoryOverview = _mapper.Map<IEnumerable<FlashCardCategoryOverview>>(packageSentences
                 .SortByDescending(it => it.CreatedDate)
                 .Skip((query.Page - 1) * query.PageSize)
                 .Limit(query.PageSize)
                 .ToList());
-            var pagedResult = new PagedQueryResult<FlashcardCategoryOverview>(flashcardCategoryOverview, totalItemCount, query.Page, query.PageSize);
+            var pagedResult = new PagedQueryResult<FlashCardCategoryOverview>(flashcardCategoryOverview, totalItemCount, query.Page, query.PageSize);
             return pagedResult;
         }
     }

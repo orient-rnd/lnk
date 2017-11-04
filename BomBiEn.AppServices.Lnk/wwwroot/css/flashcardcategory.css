@@ -27,10 +27,12 @@
     position: absolute !important;
     top: 10px;
     right: 10px;
+    height:40px;
 }
 
 .tool-groub {
     right: 45px !important;
+    width:100px !important;
 }
 
 .tool {

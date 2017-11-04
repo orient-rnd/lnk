@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BomBiEn.Queries.FlashCards
 {
-    public class ListFlashCategoriesQuery: ListQueryBase
+    public class ListFlashCardCategoriesQuery: ListQueryBase
     {
         public string UserEmail { get; set; }
     }

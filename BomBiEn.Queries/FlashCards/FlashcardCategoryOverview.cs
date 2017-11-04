@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BomBiEn.Queries.FlashCards
 {
-    public class FlashcardCategoryOverview : AuditableEntityBase, IAggregateRoot
+    public class FlashCardCategoryOverview : AuditableEntityBase, IAggregateRoot
     {
         public string Name { get; set; }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using BomBiEn.Infrastructure.Queries;
 using BomBiEn.Infrastructure.Commands;
 using AutoMapper;
+using BomBiEn.Queries.Categories;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,9 +30,6 @@ namespace BomBiEn.AppServices.Lnk.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            //var query = new ListSentencesQuery() { Category = "2aae84001bb542b3825d73de31357c4f" };
-            //var sentences = _queryBus.Send<ListSentencesQuery, PagedQueryResult<SentenceOverview>>(query);
-            //var neededSentences = sentences.Items.ToList();
             return View();
         }
     }

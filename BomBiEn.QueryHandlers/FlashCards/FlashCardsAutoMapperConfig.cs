@@ -12,7 +12,7 @@ namespace BomBiEn.QueryHandlers.FlashCards
     {
         public FlashCardsAutoMapperConfig()
         {
-            CreateMap<FlashCardCategory, FlashcardCategoryOverview>();
+            CreateMap<FlashCardCategory, FlashCardCategoryOverview>();
         }
     }
 }
