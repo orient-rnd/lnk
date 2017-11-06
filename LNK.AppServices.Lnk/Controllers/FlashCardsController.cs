@@ -51,6 +51,7 @@ namespace LNK.AppServices.Lnk.Controllers
         [HttpGet]
         public IActionResult CreateFlashCard(string id)
         {
+
             var command = new CreateFlashCardCommand()
             {
                 FaceA = "face a",

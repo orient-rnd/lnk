@@ -128,7 +128,6 @@ namespace LNK.QueryHandlers.FlashCards
             return FlashCardOverviews;
         }
 
-
         public IEnumerable<SuggestionWord> Handle(GetAllSuggestionWordsQuery query)
         {
             var result = new List<SuggestionWord>();
