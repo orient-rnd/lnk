@@ -62,12 +62,12 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(createFlashCardCategoryCommand);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "FlashCards");
         }
 
         public IActionResult EditCategory(string id)
         {
-            id = "7ec3083bac28426fb7579cca05fa5cb6";
+            //id = "7ec3083bac28426fb7579cca05fa5cb6";
             var query = new GetFlashCardCategoryDetailsQuery() { Id = id };
             //var query = new GetFlashCardCategoryDetailsQuery() { Category = "2aae84001bb542b3825d73de31357c4f" };
             var detail = _queryBus.Send<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>(query);
@@ -89,7 +89,7 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(updateFlashCardCategoryCommand);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "FlashCards");
         }
     }
 }

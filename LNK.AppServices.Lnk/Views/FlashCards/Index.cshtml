@@ -14,7 +14,7 @@
                         <p class="intro">
                             Add new category by yourself
                         </p>
-                        <a class="waves-effect waves-light btn">Create new category</a>
+                        <a class="waves-effect waves-light btn modal-trigger" onclick="callModalCreate('@Url.Action("CreateCategory", "Categories")')">Create new category</a>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,12 @@
                                 {}*@
                             <ul class="tool-groub">
                                 <li class="tool"><a asp-action="Delete" asp-route-id="@item.Id" class="btn-floating red" OnClick="return confirm('Are you sure want to delete ?');"><i class="material-icons">delete</i></a></li>
-                                <li class="tool"><a asp-action="Edit" asp-route-id="@item.Id" class="btn-floating green"><i class="material-icons"> mode_edit</i></a></li>
+                                <li class="tool"><a class="btn modal-trigger btn-floating green" 
+                                                    onclick="callModalEdit('@Url.Action(
+                                                                           "EditCategory",
+                                                                           "Categories",
+                                                                           new { id=item.Id })')">
+                                <i class="material-icons"> mode_edit</i></a></li>
                             </ul>
                         </div>
                         <img class="activator" src="~/images/mountain.jpg" height="250">
@@ -61,3 +66,37 @@
         }
     </div>
 </div>
+
+<!--------------------- Modal ------------------------>
+<!--************************************ Create *******************************************-->
+<div id="modalCreate" class="modal">
+    <div id="modalContentCreate"></div>
+</div>
+
+<!--********************************* Edit **********************************************-->
+
+<div id="modalEdit" class="modal">
+    <div id="modalContentEdit"></div>
+</div>
+
+<!--*******************************************************************************-->
+
+
+
+<script type="text/javascript">
+
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    function callModalEdit(url) {
+        $('.modal').modal();
+        $('#modalContentEdit').load(url);
+        $('#modalEdit').modal('open');
+    }
+
+
+    function callModalCreate(url) {
+        $('.modal').modal();
+        $('#modalContentCreate').load(url);
+        $('#modalCreate').modal('open');
+    }
+
+</script>

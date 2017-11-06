@@ -1,39 +1,40 @@
 ﻿@using LNK.AppServices.Lnk.Models.Category
 @model CreateModel
 
-<div class="z-depth-1 lighten-4 row" style="margin-bottom:auto; inline-block; padding: 32px 48px 30px 48px; border: 1px solid #EEE;">
-    <div class="modal-dialog center">
-        <div class="modal-header">
-            <div class="col s12 center-align">
-                <h4 class="flow-text glyphicon-bold orange-text text-darken-1">CREATE NEW CATEGORY</h4>
+<div class="row" style="top:0%; margin-bottom:0px">
+    <div class="col s12 center-align">
+        <a href="#!" class="modal-action modal-close right " style="color:#ad1457 "><i class="material-icons">close</i></a>
+    </div>
+    <div class="lighten-4 row" style="margin-bottom:auto; inline-block; padding: 0px 48px 30px 48px;">
+        <div class="modal-dialog center">
+            <div class="modal-header">
+                <div class="col s12 center-align">
+                    <h4 class="flow-text glyphicon-bold orange-text text-darken-1">CHANGE THE CURRENT CATEGORY</h4>
+                </div>
             </div>
-        </div>
-        <div class="modal-body">
-            @using (Html.BeginForm("CreateCategory", "Categories", new { returnUrl = Context.Request.Query["returnUrl"] }, FormMethod.Post, false, new { @class = "col s12" }))
+            <div class="modal-body">
+                @using (Html.BeginForm("CreateCategory", "Categories", new { returnUrl = Context.Request.Query["returnUrl"] }, FormMethod.Post, false, new { @class = "col s12" }))
             {
-                @Html.Hidden("returnUrl")
-                <div class='row'>
-                    <div class='col s12'>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class="input-field col s12">
-                        @*<input id="name_category" type="text" class="validate">*@
-                        @Html.TextBoxFor(it => it.Name, new { @class = "validate", autocomplete = "off" })
-                        <label for="name_category">New Name's Category</label>
-                    </div>
-                    <div class="section"></div>
-                </div>
-                <center>
+                    @Html.Hidden("returnUrl")
                     <div class='row'>
-                        <button type='submit' name='btn_create' class='col s12 btn btn-large light-blue lighten-1'>Create</button>
+                        <div class='col s12'>
+                        </div>
                     </div>
-                </center>
-            }
+                    <div class='row'>
+                        <div class="input-field col s12">
+                            @*<input id="name_category" type="text" class="validate">*@
+                            @Html.TextBoxFor(it => it.Name, new { @class = "validate", autocomplete = "off" })
+                            <label for="name_category">New Name's Category</label>
+                        </div>
+                        <div class="section"></div>
+                    </div>
+                    <center>
+                        <div class='row'>
+                            <button type='submit' name='btn_create' class='col s12 btn btn-large light-blue lighten-1'>Create</button>
+                        </div>
+                    </center>
+                }
+            </div>
         </div>
     </div>
 </div>
-
-
-
-
