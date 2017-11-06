@@ -295,8 +295,6 @@ namespace LNK.AppServices.Core.Configs
             containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<UpdateFlashCardCategoryCommand>>();
 
             containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>>();
-            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As <IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>>();
-            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As < IQueryHandler<GetAllFlashCardCategoriesQuery, IEnumerable<FlashCardCategoryOverview>>>();
 
         }
     }
