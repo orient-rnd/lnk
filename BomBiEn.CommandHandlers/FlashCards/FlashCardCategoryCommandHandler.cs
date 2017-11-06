@@ -29,18 +29,25 @@ namespace BomBiEn.CommandHandlers.FlashCards
 
         public void Handle(DeleteFlashcardCategoryCommand command)
         {
-            var FlashCardCategory = _writeRepository.Get<FlashCardCategory>(command.Id);
-            var filter = Builders<FlashCard>.Filter.Eq("FlashCardCategoryId", command.Id);
-            var result = _writeRepository.Find<FlashCard>(filter).ToList();
-            Contract.Assert(FlashCardCategory != null);
-            //_writeRepository.Delete(FlashCardCategory);
+            if (this.deleteDependentcomponents(command.Id))
+            {
+                _writeRepository.Delete<FlashCardCategory>(command.Id);
+            }
+            //Contract.Assert(FlashCardCategory != null);
         }
 
         private bool deleteDependentcomponents(string id)
         {
-
-
-            return true;
+            try
+            {
+                var filter = Builders<FlashCard>.Filter.Eq("FlashCardCategoryId", id);
+                _writeRepository.DeleteMany<FlashCard>(filter);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

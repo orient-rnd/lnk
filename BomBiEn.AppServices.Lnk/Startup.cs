@@ -87,12 +87,12 @@ namespace BomBiEn.AppServices.Lnk
             });
 
             return DIConfig.ConfigureServices(services, Configuration,
-                containerBuilder =>
-                { },
-                (config, assetUrlResolver, queryBus) =>
-                {
-                    config.AddProfile(new Models.Account.AccountsAutoMapperConfig(queryBus));
-                });
+               containerBuilder =>
+               { },
+               (config, assetUrlResolver, queryBus) =>
+               {
+                   config.AddProfile(new Models.Account.AccountsAutoMapperConfig(queryBus));
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

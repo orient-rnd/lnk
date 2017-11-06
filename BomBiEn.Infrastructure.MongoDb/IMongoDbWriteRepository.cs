@@ -24,5 +24,7 @@ namespace BomBiEn.Infrastructure.MongoDb
         void Delete<TDocument>(string id) where TDocument : IAggregateRoot;
 
         void Delete<TDocument>(TDocument document) where TDocument : IAggregateRoot;
+
+        void DeleteMany<TDocument>(FilterDefinition<TDocument> filter = null) where TDocument : IAggregateRoot;
     }
 }
