@@ -12,7 +12,7 @@ using LNK.Commands.FlashCards;
 
 namespace LNK.CommandHandlers.FlashCards
 {
-    public class FlashCardCommandHandler
+    public class FlashCardCommandHandler : ICommandHandler<CreateFlashCardCommand>
     {
         private readonly IMapper _mapper;
         private readonly IMongoDbWriteRepository _writeRepository;
@@ -23,6 +23,21 @@ namespace LNK.CommandHandlers.FlashCards
         {
             _mapper = mapper;
             _writeRepository = writeRepository;
+        }
+        public void Handle(CreateFlashCardCommand command)
+        {
+            var flashCard = _mapper.Map<FlashCard>(command);
+            if (String.IsNullOrEmpty(flashCard.Id))
+            {
+                flashCard.Id = Guid.NewGuid().ToString("N");
+            }
+
+            if (String.IsNullOrEmpty(flashCard.CreatedBy))
+            {
+                flashCard.CreatedBy = "HuyTran-dev";
+            }
+
+            _writeRepository.Create(flashCard);
         }
     }
 }

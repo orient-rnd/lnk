@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace LNK.Queries.FlashCards
 {
-    public class ListFlashCardCategoriesQuery : ListQueryBase
+    public class ListFlashCardsQuery : ListQueryBase
     {
+        public string CategoryId { get; set; }
+
         public string UserId { get; set; }
 
-        public string UserEmail { get; set; }
+        public bool? NotSupportYet { get; set; }
     }
 }

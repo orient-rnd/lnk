@@ -291,12 +291,13 @@ namespace LNK.AppServices.Core.Configs
 
         private static void FlashCardsAutoMapperConfig(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<DeleteFlashcardCategoryCommand>>();                      
+            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<DeleteFlashcardCategoryCommand>>();
+            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<CreateFlashCardCommand>>();
+            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>>();
             containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<CreateFlashCardCategoryCommand>>();
             containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<UpdateFlashCardCategoryCommand>>();
 
             containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>>();
-            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>>();
 
         }
     }
