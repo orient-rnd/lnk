@@ -1,0 +1,40 @@
+﻿@using LNK.Queries.FlashCards
+@model FlashCardCategoryDetails
+
+<div class="z-depth-1 lighten-4 row" style="margin-bottom:auto; inline-block; padding: 32px 48px 30px 48px; border: 1px solid #EEE;">
+    <div class="modal-dialog center">
+        <div class="modal-header">
+            <div class="col s12 center-align">
+                <h4 class="flow-text glyphicon-bold orange-text text-darken-1">CHANGE THE CURRENT CATEGORY</h4>
+            </div>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("EditCategory", "Categories", new { returnUrl = Context.Request.Query["returnUrl"] }, FormMethod.Post, false, new { @class = "col s12" }))
+            {
+                @Html.Hidden("returnUrl")
+                <div class='row'>
+                    <div class='col s12'>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="input-field col s12">
+                        @Html.TextBoxFor(it => it.Name, new { @class = "validate", autocomplete = "off", WriteAttributeValue = Model.Name })
+                        <label for="name_category">Name's Category</label>
+                    </div>
+                    @Html.HiddenFor(it => it.UserEmail)
+                    @Html.HiddenFor(it => it.UserId)
+                    @Html.HiddenFor(it => it.IsFaceAShowFirst)
+                    @Html.HiddenFor(it => it.IsRandom)
+                    @Html.HiddenFor(it => it.DisplayOrder)
+                    <div class="section"></div>
+                </div>
+
+                <center>
+                    <div class='row'>
+                        <button type='submit' name='btn_save' class='col s12 btn btn-large light-blue lighten-1'>Save</button>
+                    </div>
+                </center>
+            }
+        </div>
+    </div>
+</div>

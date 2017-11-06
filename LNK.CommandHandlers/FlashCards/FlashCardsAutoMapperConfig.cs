@@ -13,6 +13,8 @@ namespace LNK.CommandHandlers.FlashCards
         public FlashCardsAutoMapperConfig()
         {
             CreateMap<CreateFlashCardCategoryCommand, FlashCardCategory>();
+            CreateMap<UpdateFlashCardCategoryCommand, FlashCardCategory>();
+
         }
     }
 }
