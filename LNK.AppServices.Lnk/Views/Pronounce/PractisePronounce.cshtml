@@ -1,0 +1,44 @@
+﻿@using LNK.Queries.Sentences
+@model List<SentencePronounceOverview>
+@{
+    ViewData["Title"] = "Pronounce " + ViewBag.word + " Sound";
+    var user = User.Identity.Name;
+    var listCate = (List<string>)ViewBag.listCate;
+}
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <h3 class="header center orange-text">250+ SH Words, Phrases, Sentences</h3>
+            <p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/uguN4ghpKtQ" frameborder="0" allowfullscreen></iframe>
+            </p>
+        </div>
+
+        <div class="row">
+            @foreach (var itemCate in listCate)
+            {
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+                        <h5 class="center">@itemCate</h5>
+                        <p class="light">
+                            <ul>
+                                @foreach (var item in Model.Where(n => n.Tags.Contains("PronouncePage_" + ViewBag.word + "_" + itemCate)).ToList())
+                                {
+                                    <li>
+                                        <span>@item.EnglishContent</span> - <span>@item.IPAs</span> - <a target="_blank" href="@item.LinkListen">Listen</a>
+                                    </li>
+                                }
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+<br><br>
