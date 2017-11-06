@@ -12,6 +12,7 @@ namespace BomBiEn.CommandHandlers.FlashCards
     {
         public FlashCardsAutoMapperConfig()
         {
+            CreateMap<CreateFlashCardCommand, FlashCard>();
             CreateMap<CreateFlashCardCategoryCommand, FlashCardCategory>();
         }
     }

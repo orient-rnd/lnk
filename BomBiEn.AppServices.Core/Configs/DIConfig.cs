@@ -44,6 +44,8 @@ using BomBiEn.CommandHandlers.Sentences;
 using BomBiEn.Commands.Sentences;
 using BomBiEn.Queries.Sentences;
 using BomBiEn.QueryHandlers.Sentences;
+using BomBiEn.QueryHandlers.FlashCards;
+using BomBiEn.Queries.FlashCards;
 using BomBiEn.CommandHandlers.FlashCards;
 using BomBiEn.Commands.FlashCards;
 
@@ -289,6 +291,9 @@ namespace BomBiEn.AppServices.Core.Configs
 
         private static void FlashCardsAutoMapperConfig(ContainerBuilder containerBuilder)
         {
+            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<DeleteFlashcardCategoryCommand>>();
+            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<CreateFlashCardCommand>>();
+            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>>();
             containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<CreateFlashCardCategoryCommand>>();
         }
     }

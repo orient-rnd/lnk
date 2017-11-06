@@ -1,0 +1,58 @@
+﻿.card--modifier:hover {
+    cursor: pointer;
+}
+
+.card-title--modifier {
+    font-weight: bold !important;
+    color: #455358 !important;
+    font-size: 18px !important;
+}
+
+.u-blod {
+    font-weight: bold !important;
+    color: #455358 !important;
+}
+
+.hover-color:hover {
+    color: #ffca28;
+}
+
+.tap-target {
+    width: 350px;
+    height: 350px;
+    /*z-index: -1;*/
+}
+
+.edit-btn {
+    position: absolute !important;
+    top: 10px;
+    right: 10px;
+    height:40px;
+}
+
+.tool-groub {
+    right: 45px !important;
+    width:100px !important;
+}
+
+.tool {
+    margin: 0 5px 0 0 !important;
+}
+
+.add-card {
+    min-height: 350px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.intro {
+    font-size: 30px;
+}
+
+.add-card-content {
+    display: flex;
+    align-items: center;
+    border: 2px dashed #4db6ac;
+    box-shadow: none;
+}

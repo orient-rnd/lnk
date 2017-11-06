@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using BomBiEn.Infrastructure.Queries;
+using BomBiEn.Infrastructure.Commands;
+using AutoMapper;
+using BomBiEn.Queries.Categories;
 using BomBiEn.AppServices.Lnk.Models.Category;
 using System.Net;
 using BomBiEn.Infrastructure.Queries;
@@ -15,53 +19,55 @@ using BomBiEn.Commands.FlashCards;
 
 namespace BomBiEn.AppServices.Lnk.Controllers
 {
-
     public class CategoriesController : Controller
     {
 
-        private readonly IQueryBus _queryBus;
-        private readonly ICommandBus _commandBus;
-        private readonly IMapper _mapper;
-
-
-        public CategoriesController(
-            IQueryBus queryBus,
-            ICommandBus commandBus,
-            IMapper mapper)
-        {
-            _queryBus = queryBus;
-            _commandBus = commandBus;
-            _mapper = mapper;
-
-        }
-
-        // GET: /<controller>/
-        public IActionResult Index()
+        public class CategoriesController : Controller
         {
 
-            return View();
-        }
+            private readonly IQueryBus _queryBus;
+            private readonly ICommandBus _commandBus;
+            private readonly IMapper _mapper;
 
-        public IActionResult CreateCategory()
-        {
-            var model = new CreateModel();
-            return View(model);
-        }
+            public CategoriesController(
+                IQueryBus queryBus,
+                ICommandBus commandBus,
+                IMapper mapper)
+            {
+                _queryBus = queryBus;
+                _commandBus = commandBus;
+                _mapper = mapper;
 
-        [HttpPost]
-        public ActionResult CreateCategory(CreateModel request)
-        {
-            var createFlashCardCategoryCommand = new CreateFlashCardCategoryCommand() {
-                Name = request.Name,
-                UserId = "80c36c19eec24dd3a39b54a95b95a4bd",    
-                UserEmail = "nguyenhuuloc304@gmail.com",
-                IsFaceAShowFirst = request.IsFaceAShowFirst,
-                IsRandom = request.IsRandom,
-                DisplayOrder = 1
-            };
-            _commandBus.Send(createFlashCardCategoryCommand);
+            }
 
-            return RedirectToAction("Index", "Home");
+            // GET: /<controller>/
+            public IActionResult Index()
+            {
+                return View();
+            }
+
+            public IActionResult CreateCategory()
+            {
+                var model = new CreateModel();
+                return View(model);
+            }
+
+            [HttpPost]
+            public ActionResult CreateCategory(CreateModel request)
+            {
+                var createFlashCardCategoryCommand = new CreateFlashCardCategoryCommand()
+                {
+                    Name = request.Name,
+                    UserId = "80c36c19eec24dd3a39b54a95b95a4bd",
+                    UserEmail = "nguyenhuuloc304@gmail.com",
+                    IsFaceAShowFirst = request.IsFaceAShowFirst,
+                    IsRandom = request.IsRandom,
+                    DisplayOrder = 1
+                };
+                _commandBus.Send(createFlashCardCategoryCommand);
+
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

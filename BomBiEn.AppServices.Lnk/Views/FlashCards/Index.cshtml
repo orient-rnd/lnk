@@ -1,4 +1,63 @@
-﻿@{
-    ViewData["Title"] = "Flash cards";
-    var user = User.Identity.Name;
+﻿@using BomBiEn.Queries.FlashCards;
+@model List<FlashCardCategoryOverview>
+@{
+    ViewData["Title"] = "Common English Speaking SentencesFlash cards";
+    var index = Model.Count() / 3;
 }
+
+<div class="container">
+    <div class="row">
+        <div class="col xl4 m6 ">
+            <div class="card card--modifier add-card-content">
+                <div class="card-content add-card">
+                    <div>
+                        <p class="intro">
+                            Add new category by yourself
+                        </p>
+                        <a class="waves-effect waves-light btn">Create new category</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @foreach (var item in Model)
+        {
+            @*<div>
+                <a asp-action="CreateFlashCard" asp-route-id="@item.Id" class="btn-floating green">@item.Name</a>
+            </div>*@
+            <div class="col xl4 m6 ">
+                <div class="card hoverable card--modifier">
+                    <div class="card-image">
+                        <div class="fixed-action-btn horizontal edit-btn">
+                            <a class="btn-floating light-blue ">
+                                <i class="large material-icons">menu</i>
+                            </a>
+                            @*@using (Html.BeginForm("Delete", "FlashCards", FormMethod.Get, new { falshCardCategoryId = @item.Id }))
+                                {}*@
+                            <ul class="tool-groub">
+                                <li class="tool"><a asp-action="Delete" asp-route-id="@item.Id" class="btn-floating red" OnClick="return confirm('Are you sure want to delete ?');"><i class="material-icons">delete</i></a></li>
+                                <li class="tool"><a asp-action="Edit" asp-route-id="@item.Id" class="btn-floating green"><i class="material-icons"> mode_edit</i></a></li>
+                            </ul>
+                        </div>
+                        <img class="activator" src="~/images/mountain.jpg" height="250">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator card-title--modifier">@item.Name</span>
+                        @*<span class="u-blod cyan-text ">10 words:</span>*@
+                        <a href="#" class="hover-color">
+                            @if (item.CreatedBy == null)
+                            {
+                                <span>Huy Tran</span>
+                            }
+                            else
+                            {
+                                @item.CreatedBy
+                            }
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

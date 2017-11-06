@@ -72,5 +72,16 @@ namespace BomBiEn.Infrastructure.MongoDb
         {
             GetCollection<TDocument>().DeleteOne(it => it.Id == document.Id);
         }
+
+        public void DeleteMany<TDocument>(FilterDefinition<TDocument> filter = null) where TDocument : IAggregateRoot
+        {
+            if (filter == null)
+            {
+                var builder = Builders<TDocument>.Filter;
+                filter = builder.Empty;
+            }
+
+            _mongoDatabase.GetCollection<TDocument>(typeof(TDocument).Name).DeleteMany(filter);
+        }
     }
 }

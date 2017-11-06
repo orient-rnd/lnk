@@ -8,6 +8,7 @@ using BomBiEn.Infrastructure.MongoDb;
 using BomBiEn.Infrastructure.Queries;
 using BomBiEn.Domain.Sentences.Models;
 using BomBiEn.Domain.Users.Models;
+using BomBiEn.Queries.Categories;
 
 namespace BomBiEn.QueryHandlers.FlashCards
 {
@@ -24,6 +25,7 @@ namespace BomBiEn.QueryHandlers.FlashCards
             _mapper = mapper;
             _readRepository = readRepository;
         }
+
 
     }
 }
