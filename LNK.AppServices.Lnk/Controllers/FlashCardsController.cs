@@ -7,6 +7,10 @@ using LNK.Queries.Users;
 using LNK.Infrastructure.Queries;
 using LNK.Infrastructure.Commands;
 using AutoMapper;
+using LNK.Queries.FlashCards;
+using LNK.Queries.Categories;
+using LNK.Queries.Sentences;
+using LNK.Commands.FlashCards;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,8 +34,18 @@ namespace LNK.AppServices.Lnk.Controllers
 
         public IActionResult Index()
         {
-           
-            return View();
-        }        
+            var query = new ListFlashCardCategoriesQuery() { UserEmail = "nguyenhuuloc304@gmail.com" };
+            var flashCardCategories = _queryBus.Send<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>(query);
+            var neededSentences = flashCardCategories.Items.ToList();
+            return View(neededSentences);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            var command = new DeleteFlashcardCategoryCommand() { Id = id };
+            _commandBus.Send(command);
+            return RedirectToAction("Index", "FlashCards");
+        }       
     }
 }

@@ -16,6 +16,7 @@ namespace LNK.CommandHandlers.Users
             CreateMap<CreateUserCommand, User>();
             CreateMap<SignUpCommand, User>();
             CreateMap<UpdateUserCommand, User>();
+            CreateMap<User, UpdateUserCommand>();
 
             // Roles
             CreateMap<CreateRoleCommand, Role>();

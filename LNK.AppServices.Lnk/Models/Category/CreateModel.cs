@@ -1,15 +1,12 @@
-﻿using LNK.Infrastructure.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LNK.Commands.FlashCards
+namespace LNK.AppServices.Lnk.Models.Category
 {
-    public class UpdateFlashCardCategoryCommand : AuditableUpdateCommandBase
+    public class CreateModel
     {
-        public string Id { get; set; }
-
         public string Name { get; set; }
 
         public string UserId { get; set; }
@@ -20,6 +17,6 @@ namespace LNK.Commands.FlashCards
 
         public bool IsRandom { get; set; }
 
-        public int DisplayOrder { get; set; }       
+        public int DisplayOrder { get; set; }
     }
 }

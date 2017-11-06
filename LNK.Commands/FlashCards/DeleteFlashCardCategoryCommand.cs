@@ -1,12 +1,11 @@
 ﻿using LNK.Infrastructure.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace LNK.Commands.FlashCards
 {
-    public class DeleteFlashCardCategoryCommand : AuditableDeleteCommandBase
+    public class DeleteFlashcardCategoryCommand : AuditableDeleteCommandBase
     {
         public string Id { get; set; }
     }

@@ -14,6 +14,7 @@ namespace LNK.AppServices.Lnk.Controllers
             return View();
         }
 
+
         public IActionResult About()
         {
             var team = new List<Team>();

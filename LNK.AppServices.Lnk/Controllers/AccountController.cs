@@ -11,6 +11,9 @@ using LNK.Domain.Emails.Services;
 using LNK.AppServices.Lnk.Models.Account;
 using System.Net;
 using LNK.Commands.Users;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using LNK.Domain.Users.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,19 +26,22 @@ namespace LNK.AppServices.Lnk.Controllers
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
+        private readonly ICommandHandler<UpdateUserCommand> _commandHandler;
 
         public AccountController(
             IQueryBus queryBus,
             ICommandBus commandBus,
             IMapper mapper,
             IUserService userService,
-            IEmailService emailService)
+            IEmailService emailService,
+            ICommandHandler<UpdateUserCommand> commandHandler)
         {
             _queryBus = queryBus;
             _commandBus = commandBus;
             _mapper = mapper;
             _userService = userService;
             _emailService = emailService;
+            _commandHandler = commandHandler;
         }
 
 
@@ -55,7 +61,7 @@ namespace LNK.AppServices.Lnk.Controllers
         {
             var signUpCommand = new SignUpCommand() { Email = request.UserName, Password = request.Password };
             _commandBus.Send(signUpCommand);
-
+            
             var userResponse = new UserResponseModel() { Status = Shared.Enums.UserStatus.Approved };
             var result = await _userService.SignInAsync(request.UserName, request.Password, true);
             if (result.Succeeded)
@@ -124,11 +130,63 @@ namespace LNK.AppServices.Lnk.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword(ForgotPasswordModel model)
+        {
+            ViewBag.temp = true;
+            string newPassword = "Huycautac1995";//default password
+            var user =  _userService.FindByEmailAsync(model.UserName).Result;
+            if (user != null)
+            { 
+                var token =  _userService.GeneratePasswordResetTokenAsync(user).Result;
+                var result = _userService.ResetPasswordAsync(user, token, newPassword).Result;
+                ModelState.AddModelError("Email", "We had sent a request to your email to change your password. Please check it!");
+            }
+            else
+            {
+                ModelState.AddModelError("Email", "We had sent a request to your email to change your password. Please check it!");
+                return View(model);
+            }
+            
+            
+            return View(model);
+        }
+
         public async Task<ActionResult> Logout()
         {
             await _userService.SignOutAsync();
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Vocabularies");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit()
+        {           
+            var user = _userService.FindByEmailAsync(User.Identity.Name).Result;
+            if (user == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User com)
+        {
+            var user = _mapper.Map<User, UpdateUserCommand>(com);
+            _commandHandler.Handle(user);
+            return View(com);
         }
     }
 }

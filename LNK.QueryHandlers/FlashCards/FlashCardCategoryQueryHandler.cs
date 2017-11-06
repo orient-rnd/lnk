@@ -12,7 +12,6 @@ namespace LNK.QueryHandlers.FlashCards
 {
     public class FlashCardCategoryQueryHandler :
         IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>,
-        IQueryHandler<GetAllFlashCardCategoriesQuery, IEnumerable<FlashCardCategoryOverview>>,
         IQueryHandler<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>
     {
         private readonly IMapper _mapper;
@@ -57,7 +56,7 @@ namespace LNK.QueryHandlers.FlashCards
             {
                 filter = filter & builder.Eq(it => it.Id, query.Id);
             }
-            
+
             if (filter == builder.Empty)
             {
                 return null;
@@ -68,16 +67,5 @@ namespace LNK.QueryHandlers.FlashCards
             return FlashCardCategoryDetails;
         }
 
-        public IEnumerable<FlashCardCategoryOverview> Handle(GetAllFlashCardCategoriesQuery query)
-        {
-            var builder = Builders<FlashCardCategory>.Filter;
-            var filter = builder.Empty;
-
-            var FlashCardCategories = _readRepository.Find(filter);
-            var totalItemCount = FlashCardCategories.Count();
-
-            var FlashCardCategoryOverviews = _mapper.Map<IEnumerable<FlashCardCategoryOverview>>(FlashCardCategories.ToList());
-            return FlashCardCategoryOverviews;
-        }
     }
 }
