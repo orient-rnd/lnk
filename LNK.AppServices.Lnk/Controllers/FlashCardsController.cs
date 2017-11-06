@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using LNK.Queries.Users;
 using LNK.Infrastructure.Queries;
 using LNK.Infrastructure.Commands;
+using LNK.Commands.FlashCards;
 using AutoMapper;
 using LNK.Queries.FlashCards;
-using LNK.Queries.Categories;
-using LNK.Queries.Sentences;
-using LNK.Commands.FlashCards;
+using LNK.AppServices.Lnk.Models.FlashCard;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,28 +39,34 @@ namespace LNK.AppServices.Lnk.Controllers
             return View(neededSentences);
         }
 
-        [HttpGet]
-        public IActionResult Delete(string id)
+
+        public IActionResult CreateFlashCard()
         {
-            var command = new DeleteFlashcardCategoryCommand() { Id = id };
+            var model = new CreateFlashCardModel();
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateFlashCard(CreateFlashCardModel model)
+        {
+
+            var command = new CreateFlashCardCommand()
+            {
+                FaceA = model.FaceA,
+                FaceB = model.FaceB,
+                FlashCardCategoryId = "7b619936ef064116b1a91f6e00506491",
+                FlashCardCategoryName = "admin-dev",
+                UserEmail = "huytranprers@gmail.com",
+                ViewNumber = 0,
+            };
             _commandBus.Send(command);
             return RedirectToAction("Index", "FlashCards");
         }
 
         [HttpGet]
-        public IActionResult CreateFlashCard(string id)
+        public IActionResult Delete(string id)
         {
-
-            var command = new CreateFlashCardCommand()
-            {
-                FaceA = "face a",
-                FaceB = "face b",
-                FlashCardCategoryId = id,
-                FlashCardCategoryName = "admin-dev",
-                UserEmail = "huytranprers@gmail.com",
-                DisplayOrder = 1,
-                ViewNumber = 1,
-            };
+            var command = new DeleteFlashcardCategoryCommand() { Id = id };
             _commandBus.Send(command);
             return RedirectToAction("Index", "FlashCards");
         }

@@ -2,8 +2,6 @@
     ViewData["Title"] = "Vocabularies";
 }
 
-
-
 <!--------------------- Modal ------------------------>
 <!--************************************ Create *******************************************-->
 <div id="modalCreate" class="modal">
@@ -18,6 +16,9 @@
 
 <!--*******************************************************************************-->
 
+<div id="modalCreateFlashCard" class="modal">
+    <div id="modalContentCreateFlashCard"></div>
+</div>
 
 @*<div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -49,7 +50,6 @@
     </div>
 </div>
 
-
 <div class="container">
     <div class="section">
     </div>
@@ -60,26 +60,28 @@
     <div class="box-body">
         <a class="waves-effect waves-light btn modal-trigger"  id="modalCreate" onclick="callModalCreate('@Url.Action("CreateCategory", "Categories")')">Create</a>
         <a class="waves-effect waves-light btn modal-trigger"  id="modalEdit" onclick="callModalEdit('@Url.Action("EditCategory", "Categories",new { id="7ec3083bac28426fb7579cca05fa5cb6" })')">Edit</a>
+        <a class="waves-effect waves-light btn modal-trigger" id="modalCreateFlashCard" onclick="callModalCreateFlashCard('@Url.Action("CreateFlashCard", "FlashCards")')">Create Flashcard</a>
     </div>
 </form>
 
-
-
-
 <script type="text/javascript">
    
-        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     function callModalEdit(url) {
         $('.modal').modal();
         $('#modalContentEdit').load(url);
         $('#modalEdit').modal('open');
     }
 
-
     function callModalCreate(url) {
         $('.modal').modal();
         $('#modalContentCreate').load(url);
         $('#modalCreate').modal('open');
+    }
+
+    function callModalCreateFlashCard(url) {
+        $('.modal').modal();
+        $('#modalContentCreateFlashCard').load(url);
+        $('#modalCreateFlashCard').modal('open');
     }
 
 </script>

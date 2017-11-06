@@ -1,6 +1,8 @@
-﻿@using LNK.AppServices.Lnk.Models.Category
-@model CreateModel
+﻿@using LNK.AppServices.Lnk.Models.FlashCard
+@model CreateFlashCardModel
+@{
 
+}
 <div class="row" style="top:0%; margin-bottom:0px">
     <div class="col s12 center-align">
         <a href="#!" class="modal-action modal-close right " style="color:#ad1457 "><i class="material-icons">close</i></a>
@@ -9,11 +11,11 @@
         <div class="modal-dialog center">
             <div class="modal-header">
                 <div class="col s12 center-align">
-                    <h4 class="flow-text glyphicon-bold orange-text text-darken-1">CHANGE THE CURRENT CATEGORY</h4>
+                    <h4 class="flow-text glyphicon-bold orange-text text-darken-1">CREATE FLASHCARD</h4>
                 </div>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("CreateCategory", "Categories", new { returnUrl = Context.Request.Query["returnUrl"] }, FormMethod.Post, false, new { @class = "col s12" }))
+                @using (Html.BeginForm("CreateFlashCard", "FlashCards", new { returnUrl = Context.Request.Query["returnUrl"] }, FormMethod.Post, false, new { @class = "col s12" }))
             {
                     @Html.Hidden("returnUrl")
                     <div class='row'>
@@ -22,19 +24,24 @@
                     </div>
                     <div class='row'>
                         <div class="input-field col s12">
-                            @*<input id="name_category" type="text" class="validate">*@
-                            @Html.TextBoxFor(it => it.Name, new { @class = "validate", autocomplete = "off" })
-                            <label for="name_category">New Name's Category</label>
+                            @Html.TextBoxFor(it => it.FaceA, new { @class = "validate", autocomplete = "off" })
+                            <label>Input Term</label>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            @Html.TextBoxFor(it => it.FaceB, new { @class = "validate", autocomplete = "off" })
+                            <label>Input Definition</label>
                         </div>
                         <div class="section"></div>
                     </div>
                     <center>
                         <div class='row'>
-                            <button type='submit' name='btn_create' class='col s12 btn btn-large light-blue lighten-1'>Create</button>
+                            <button type='submit' name='btn_save' class='col s12 btn btn-large light-blue lighten-1'>Save</button>
                         </div>
                     </center>
                 }
             </div>
         </div>
     </div>
-</div>

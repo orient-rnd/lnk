@@ -13,6 +13,7 @@ using LNK.AppServices.Lnk.Services;
 using LNK.AppServices.Core.Configs;
 using LNK.Domain.Users.Models;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Http;
 
 namespace LNK.AppServices.Lnk
 {
@@ -71,6 +72,8 @@ namespace LNK.AppServices.Lnk
                 });
 
             services.AddScoped<ICommandBus, AdminPanelCommandBus>();
+
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession();
 

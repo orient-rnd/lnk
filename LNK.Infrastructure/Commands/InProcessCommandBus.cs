@@ -21,7 +21,6 @@ namespace LNK.Infrastructure.Commands
         {
             ICommandHandler<TCommand> commandHandler = _componentContext.Resolve<ICommandHandler<TCommand>>();
             Contract.Assert(commandHandler != null);
-
             commandHandler.Handle(command);
         }
 
