@@ -1,13 +1,13 @@
-﻿using LNK.Infrastructure.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LNK.Commands.FlashCards
+namespace LNK.AppServices.Lnk.Models.FlashCard
 {
-    public class CreateFlashCardCommand : AuditableCreateCommandBase
+    public class CreateFlashCardModel
     {
+        public string Id { get; set; }
 
         public string FaceA { get; set; }
 
@@ -22,5 +22,6 @@ namespace LNK.Commands.FlashCards
         public string UserEmail { get; set; }
 
         public int ViewNumber { get; set; }
+
     }
 }
