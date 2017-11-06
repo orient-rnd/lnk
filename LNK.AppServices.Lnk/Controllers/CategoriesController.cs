@@ -10,6 +10,7 @@ using LNK.Infrastructure.Commands;
 using AutoMapper;
 using LNK.Domain.Users.Services;
 using LNK.Commands.FlashCards;
+using LNK.Queries.FlashCards;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,16 +37,16 @@ namespace LNK.AppServices.Lnk.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
-        {
+        //public IActionResult Index()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         public IActionResult CreateCategory()
         {
             var model = new CreateModel();
-            return View(model);
+            return PartialView(model);
         }
 
         [HttpPost]
@@ -60,6 +61,33 @@ namespace LNK.AppServices.Lnk.Controllers
                 DisplayOrder = 1
             };
             _commandBus.Send(createFlashCardCategoryCommand);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult EditCategory(string id)
+        {
+            id = "7ec3083bac28426fb7579cca05fa5cb6";
+            var query = new GetFlashCardCategoryDetailsQuery() { Id = id };
+            //var query = new GetFlashCardCategoryDetailsQuery() { Category = "2aae84001bb542b3825d73de31357c4f" };
+            var detail = _queryBus.Send<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>(query);
+            return PartialView(detail);
+        }
+
+        [HttpPost]
+        public IActionResult EditCategory(CategoryResponseModel respond)
+        {
+            var updateFlashCardCategoryCommand = new UpdateFlashCardCategoryCommand()
+            {
+                Id = respond.Id,
+                UserId = respond.UserId,
+                UserEmail=respond.UserEmail,
+                Name=respond.Name,
+                IsFaceAShowFirst=respond.IsFaceAShowFirst,
+                IsRandom=respond.IsRandom,
+                DisplayOrder=respond.DisplayOrder
+            };
+            _commandBus.Send(updateFlashCardCategoryCommand);
 
             return RedirectToAction("Index", "Home");
         }
