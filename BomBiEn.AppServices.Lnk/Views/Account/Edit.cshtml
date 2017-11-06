@@ -1,0 +1,76 @@
+﻿@using BomBiEn.Domain.Users.Models
+@model User
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div class="section">
+
+</div>
+
+<h5 class="indigo-text" style="text-align:center;">Update User's Information</h5>
+
+
+<div class="container">
+    <div class="section">
+        <form asp-controller="Account" asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "validate", autocomplete = "off" })
+                    <label for="email">Email</label>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "validate", autocomplete = "off" })
+                    <label for="firstname">First Name</label>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "validate", autocomplete = "off" })
+                    <label for="middlename">Middle Name</label>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "validate", autocomplete = "off" })
+                    <label for="lastname">Last Name</label>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.Gender, new { @class = "validate", autocomplete = "off" })
+                    <label for="gender">Gender</label>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.Country, new { @class = "validate", autocomplete = "off" })
+                    <label for="country">Country</label>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='input-field col s12'>
+                    @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "validate", autocomplete = "off" })
+                    <label for="dateofbirth">Date of birth</label>
+                </div>
+            </div>
+            <input type="hidden" value="@Model.Id" name="id">
+            <br />
+            <center>
+                <div class='row'>
+                    <button type='submit' name='btn_save' class='col s12 btn btn-large waves-effect blue'>Save</button>
+                </div>
+            </center>
+        </form>
+            
+    </div>
+</div>

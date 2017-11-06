@@ -12,9 +12,12 @@ using BomBiEn.Domain.Users.Models;
 using BomBiEn.Commands.FlashCards;
 using MongoDB.Driver;
 
+
 namespace BomBiEn.CommandHandlers.FlashCards
 {
-    public class FlashCardCategoryCommandHandler : ICommandHandler<DeleteFlashcardCategoryCommand>
+    public class FlashCardCategoryCommandHandler :
+        ICommandHandler<CreateFlashCardCategoryCommand>,
+             ICommandHandler<DeleteFlashcardCategoryCommand>
     {
         private readonly IMapper _mapper;
         private readonly IMongoDbWriteRepository _writeRepository;
@@ -48,6 +51,12 @@ namespace BomBiEn.CommandHandlers.FlashCards
             {
                 return false;
             }
+        }
+        public void Handle(CreateFlashCardCategoryCommand command)
+        {
+            var flashCardCategory = _mapper.Map<FlashCardCategory>(command);
+            _writeRepository.Create(flashCardCategory);
+            //_auditLogService.LogCreate<Sentence>(Sentence.Id, Sentence.CreatedBy, Sentence.ToJson());
         }
     }
 }
