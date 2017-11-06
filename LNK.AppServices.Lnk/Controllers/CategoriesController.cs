@@ -62,7 +62,7 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(createFlashCardCategoryCommand);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "FlashCards");
         }
 
         public IActionResult EditCategory(string id)
@@ -89,7 +89,7 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(updateFlashCardCategoryCommand);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "FlashCards");
         }
     }
 }
