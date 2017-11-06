@@ -34,18 +34,9 @@ namespace LNK.AppServices.Lnk.Controllers
 
         public IActionResult Index()
         {
-            var query = new ListFlashCardCategoriesQuery() { UserEmail = "nguyenhuuloc304@gmail.com" };
-            var flashCardCategories = _queryBus.Send<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>(query);
-            var neededSentences = flashCardCategories.Items.ToList();
-            return View(neededSentences);
+            return View();
         }
 
-        [HttpGet]
-        public IActionResult Delete(string id)
-        {
-            var command = new DeleteFlashcardCategoryCommand() { Id = id };
-            _commandBus.Send(command);
-            return RedirectToAction("Index", "FlashCards");
-        }       
+      
     }
 }

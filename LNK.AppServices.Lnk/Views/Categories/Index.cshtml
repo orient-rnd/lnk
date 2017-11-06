@@ -36,7 +36,10 @@
                             @*@using (Html.BeginForm("Delete", "FlashCards", FormMethod.Get, new { falshCardCategoryId = @item.Id }))
                                 {}*@
                             <ul class="tool-groub">
-                                <li class="tool"><a asp-action="Delete" asp-route-id="@item.Id" class="btn-floating red" OnClick="return confirm('Are you sure want to delete ?');"><i class="material-icons">delete</i></a></li>
+                                <li class="tool"><a asp-action="Delete" 
+                                                    asp-route-id="@item.Id" 
+                                                    class="btn-floating red" 
+                                                    OnClick="return confirm('Are you sure want to delete ?');"><i class="material-icons">delete</i></a></li>
                                 <li class="tool"><a class="btn modal-trigger btn-floating green" 
                                                     onclick="callModalEdit('@Url.Action(
                                                                            "EditCategory",

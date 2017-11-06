@@ -39,7 +39,18 @@ namespace LNK.AppServices.Lnk.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            var query = new ListFlashCardCategoriesQuery() { UserEmail = "nguyenhuuloc304@gmail.com" };
+            var flashCardCategories = _queryBus.Send<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>(query);
+            var neededSentences = flashCardCategories.Items.ToList();
+            return View(neededSentences);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            var command = new DeleteFlashcardCategoryCommand() { Id = id };
+            _commandBus.Send(command);
+            return RedirectToAction("Index", "Categories");
         }
 
         public IActionResult CreateCategory()
@@ -62,7 +73,7 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(createFlashCardCategoryCommand);
 
-            return RedirectToAction("Index", "FlashCards");
+            return RedirectToAction("Index", "Categories");
         }
 
         public IActionResult EditCategory(string id)
@@ -89,7 +100,7 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(updateFlashCardCategoryCommand);
 
-            return RedirectToAction("Index", "FlashCards");
+            return RedirectToAction("Index", "Categories");
         }
     }
 }
