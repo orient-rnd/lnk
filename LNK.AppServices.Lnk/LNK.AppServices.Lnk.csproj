@@ -23,4 +23,8 @@
     <ProjectReference Include="..\LNK.Queries\LNK.Queries.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\angularscripts\" />
+  </ItemGroup>
+
 </Project>

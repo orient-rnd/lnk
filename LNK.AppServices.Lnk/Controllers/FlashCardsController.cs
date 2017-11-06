@@ -46,23 +46,6 @@ namespace LNK.AppServices.Lnk.Controllers
             var command = new DeleteFlashcardCategoryCommand() { Id = id };
             _commandBus.Send(command);
             return RedirectToAction("Index", "FlashCards");
-        }
-
-        [HttpGet]
-        public IActionResult CreateFlashCard(string id)
-        {
-            var command = new CreateFlashCardCommand()
-            {
-                FaceA = "face a",
-                FaceB = "face b",
-                FlashCardCategoryId = id,
-                FlashCardCategoryName = "admin-dev",
-                UserEmail = "huytranprers@gmail.com",
-                DisplayOrder = 1,
-                ViewNumber = 1,
-            };
-            _commandBus.Send(command);
-            return RedirectToAction("Index", "FlashCards");
-        }
+        }       
     }
 }
