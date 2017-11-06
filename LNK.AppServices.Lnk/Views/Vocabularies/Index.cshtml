@@ -2,8 +2,6 @@
     ViewData["Title"] = "Vocabularies";
 }
 
-
-
 <!--------------------- Modal ------------------------>
 <!--************************************ Create *******************************************-->
 <div id="modalCreate" class="modal">
@@ -52,7 +50,6 @@
     </div>
 </div>
 
-
 <div class="container">
     <div class="section">
     </div>
@@ -63,12 +60,9 @@
     <div class="box-body">
         <a class="waves-effect waves-light btn modal-trigger"  id="modalCreate" onclick="callModalCreate('@Url.Action("CreateCategory", "Categories")')">Create</a>
         <a class="waves-effect waves-light btn modal-trigger"  id="modalEdit" onclick="callModalEdit('@Url.Action("EditCategory", "Categories",new { id="7ec3083bac28426fb7579cca05fa5cb6" })')">Edit</a>
-        <a class="waves-effect waves-light btn modal-trigger" id="modalCreateFlashCard" onclick="callModalCreateFlashCard('@Url.Action("CreateFlashCard", "FlashCards",new { id="d327499b6f834dd49019e8c2f01ad80f" })')">Create Flashcard</a>
+        <a class="waves-effect waves-light btn modal-trigger" id="modalCreateFlashCard" onclick="callModalCreateFlashCard('@Url.Action("CreateFlashCard", "FlashCards")')">Create Flashcard</a>
     </div>
 </form>
-
-
-
 
 <script type="text/javascript">
    

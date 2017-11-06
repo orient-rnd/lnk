@@ -14,6 +14,7 @@ namespace LNK.CommandHandlers.FlashCards
         {
             CreateMap<CreateFlashCardCategoryCommand, FlashCardCategory>();
             CreateMap<UpdateFlashCardCategoryCommand, FlashCardCategory>();
+            CreateMap<CreateFlashCardCommand, FlashCard>();
 
         }
     }

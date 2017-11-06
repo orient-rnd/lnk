@@ -8,7 +8,6 @@ namespace LNK.Commands.FlashCards
 {
     public class CreateFlashCardCommand : AuditableCreateCommandBase
     {
-        public string Id { get; set; }
 
         public string FaceA { get; set; }
 

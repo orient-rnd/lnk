@@ -17,13 +17,13 @@ using LNK.Queries.FlashCards;
 namespace LNK.AppServices.Lnk.Controllers
 {
 
+
     public class CategoriesController : Controller
     {
 
         private readonly IQueryBus _queryBus;
         private readonly ICommandBus _commandBus;
         private readonly IMapper _mapper;
-
 
         public CategoriesController(
             IQueryBus queryBus,
@@ -37,11 +37,10 @@ namespace LNK.AppServices.Lnk.Controllers
         }
 
         // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-
-        //    return View();
-        //}
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public IActionResult CreateCategory()
         {
@@ -52,9 +51,10 @@ namespace LNK.AppServices.Lnk.Controllers
         [HttpPost]
         public ActionResult CreateCategory(CreateModel request)
         {
-            var createFlashCardCategoryCommand = new CreateFlashCardCategoryCommand() {
+            var createFlashCardCategoryCommand = new CreateFlashCardCategoryCommand()
+            {
                 Name = request.Name,
-                UserId = "80c36c19eec24dd3a39b54a95b95a4bd",    
+                UserId = "80c36c19eec24dd3a39b54a95b95a4bd",
                 UserEmail = "nguyenhuuloc304@gmail.com",
                 IsFaceAShowFirst = request.IsFaceAShowFirst,
                 IsRandom = request.IsRandom,
@@ -81,11 +81,11 @@ namespace LNK.AppServices.Lnk.Controllers
             {
                 Id = respond.Id,
                 UserId = respond.UserId,
-                UserEmail=respond.UserEmail,
-                Name=respond.Name,
-                IsFaceAShowFirst=respond.IsFaceAShowFirst,
-                IsRandom=respond.IsRandom,
-                DisplayOrder=respond.DisplayOrder
+                UserEmail = respond.UserEmail,
+                Name = respond.Name,
+                IsFaceAShowFirst = respond.IsFaceAShowFirst,
+                IsRandom = respond.IsRandom,
+                DisplayOrder = respond.DisplayOrder
             };
             _commandBus.Send(updateFlashCardCategoryCommand);
 
