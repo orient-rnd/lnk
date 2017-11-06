@@ -18,6 +18,9 @@
 
 <!--*******************************************************************************-->
 
+<div id="modalCreateFlashCard" class="modal">
+    <div id="modalContentCreateFlashCard"></div>
+</div>
 
 @*<div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -60,6 +63,7 @@
     <div class="box-body">
         <a class="waves-effect waves-light btn modal-trigger"  id="modalCreate" onclick="callModalCreate('@Url.Action("CreateCategory", "Categories")')">Create</a>
         <a class="waves-effect waves-light btn modal-trigger"  id="modalEdit" onclick="callModalEdit('@Url.Action("EditCategory", "Categories",new { id="7ec3083bac28426fb7579cca05fa5cb6" })')">Edit</a>
+        <a class="waves-effect waves-light btn modal-trigger" id="modalCreateFlashCard" onclick="callModalCreateFlashCard('@Url.Action("CreateFlashCard", "FlashCards",new { id="7ec3083bac28426fb7579cca05fa5cb6" })')">Create Flashcard</a>
     </div>
 </form>
 
@@ -75,11 +79,16 @@
         $('#modalEdit').modal('open');
     }
 
-
     function callModalCreate(url) {
         $('.modal').modal();
         $('#modalContentCreate').load(url);
         $('#modalCreate').modal('open');
+    }
+
+    function callModalCreateFlashCard(url) {
+        $('.modal').modal();
+        $('#modalContentEdit').load(url);
+        $('#modalEdit').modal('open');
     }
 
 </script>
