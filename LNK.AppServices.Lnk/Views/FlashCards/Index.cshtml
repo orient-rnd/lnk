@@ -1,11 +1,51 @@
 ﻿<div class="container">
     <nav>
-        <div class="nav-wrapper row col s12">
-            <div class="col s6">
-                <a href="#!" class="breadcrumb col s2"><i class="medium material-icons center-align">home</i></a>
-                <a href="#!" class="breadcrumb">Category</a>
-                <a href="#!" class="breadcrumb">Food</a>
+        <div class="nav-wrapper row flow-text">
+            <div class="col s10 m10 l7">
+                <a href="#!" class="breadcrumb col s1"><i class="medium material-icons">home</i></a>
+                <a href="#!" class="breadcrumb col s4">Category</a>
+                <a href="#!" class="breadcrumb col s4">Food</a>
+            </div>
+            <div class="col s2 m1 l5">
+                <a class="waves-effect waves-light btn hide-on-small-only hide-on-med-and-down">Create new flashcard</a>
+                <a class="btn-floating btn-large waves-effect waves-light show-on-medium-and-down show-on-small hide-on-large-only hide-on-med-and-up"><i class="material-icons">add</i></a>
             </div>
         </div>
     </nav>
+    <table class="highlight bordered responsive-table flow-text">
+        <thead>
+            <tr>
+                <th class="col s5">Face A</th>
+                <th class="col s5">Face B</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Alvin</td>
+                <td>Eclair</td>
+                <td class="flashcard-btn">
+                    <a class="btn-floating blue"><i class="material-icons">edit</i></a>
+                    <a class="btn-floating red"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Alan</td>
+                <td>Jellybean</td>
+                <td>
+                    <a class="btn-floating blue"><i class="material-icons">edit</i></a>
+                    <a class="btn-floating red"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>Jonathan</td>
+                <td>Lollipop</td>
+                <td>
+                    <a class="btn-floating blue"><i class="material-icons">edit</i></a>
+                    <a class="btn-floating red"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
