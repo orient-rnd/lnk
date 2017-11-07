@@ -12,11 +12,12 @@ using LNK.Commands.FlashCards;
 
 namespace LNK.CommandHandlers.FlashCards
 {
-    public class FlashCardCommandHandler: ICommandHandler<UpdateFlashCardCommand>
+    public class FlashCardCommandHandler : ICommandHandler<CreateFlashCardCommand>,
+ICommandHandler<UpdateFlashCardCommand>
     {
         private readonly IMapper _mapper;
         private readonly IMongoDbWriteRepository _writeRepository;
-
+        
         public FlashCardCommandHandler(
             IMapper mapper,
             IMongoDbWriteRepository writeRepository)
@@ -24,6 +25,14 @@ namespace LNK.CommandHandlers.FlashCards
             _mapper = mapper;
             _writeRepository = writeRepository;
         }
+
+        public void Handle(CreateFlashCardCommand command)
+        {
+            var flashCardCategory = _mapper.Map<FlashCard>(command);
+            _writeRepository.Create(flashCardCategory);
+            //_auditLogService.LogCreate<Sentence>(Sentence.Id, Sentence.CreatedBy, Sentence.ToJson());
+        }
+
 
         public void Handle (UpdateFlashCardCommand command)
         {

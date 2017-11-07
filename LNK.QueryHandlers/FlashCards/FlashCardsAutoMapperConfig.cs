@@ -6,6 +6,7 @@ using AutoMapper;
 using LNK.Queries.FlashCards;
 using LNK.Domain.FlashCards.Models;
 using LNK.Commands.FlashCards;
+using LNK.Queries.Categories;
 
 namespace LNK.QueryHandlers.FlashCards
 {
@@ -15,14 +16,14 @@ namespace LNK.QueryHandlers.FlashCards
         {
             //FlashCard
             CreateMap<FlashCard, FlashCardDetails>();
-
-            CreateMap<FlashCardDetails, UpdateFlashCardCommand>();
+            //CreateMap<FlashCardDetails, UpdateFlashCardCommand>();
+            CreateMap<FlashCard, FlashCardOverview>();
 
             // FlashCardCategory
             CreateMap<FlashCardCategory, FlashCardCategoryOverview>();
             CreateMap<FlashCardCategory, FlashCardCategoryDetails>();
-
-            CreateMap<FlashCardCategoryDetails, UpdateFlashCardCategoryCommand>();
+            //CreateMap<FlashCardCategoryDetails, UpdateFlashCardCategoryCommand>();
+            CreateMap<FlashCardCategory, FlashCardCategoryInfoOverview>();
         }
     }
 }
