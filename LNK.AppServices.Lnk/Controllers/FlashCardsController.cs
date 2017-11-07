@@ -49,6 +49,7 @@ namespace LNK.AppServices.Lnk.Controllers
         [HttpPost]
         public ActionResult CreateFlashCard(CreateFlashCardModel model)
         {
+
             var command = new CreateFlashCardCommand()
             {
                 FaceA = model.FaceA,
