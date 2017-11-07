@@ -45,14 +45,6 @@ namespace LNK.AppServices.Lnk.Controllers
             return View(neededSentences);
         }
 
-        [HttpGet]
-        public IActionResult Delete(string id)
-        {
-            var command = new DeleteFlashcardCategoryCommand() { Id = id };
-            _commandBus.Send(command);
-            return RedirectToAction("Index", "Categories");
-        }
-
         public IActionResult CreateCategory()
         {
             var model = new CreateModel();
@@ -100,6 +92,14 @@ namespace LNK.AppServices.Lnk.Controllers
             };
             _commandBus.Send(updateFlashCardCategoryCommand);
 
+            return RedirectToAction("Index", "Categories");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            var command = new DeleteFlashcardCategoryCommand() { Id = id };
+            _commandBus.Send(command);
             return RedirectToAction("Index", "Categories");
         }
     }

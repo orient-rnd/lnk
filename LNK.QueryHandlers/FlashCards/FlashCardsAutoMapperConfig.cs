@@ -13,9 +13,15 @@ namespace LNK.QueryHandlers.FlashCards
     {
         public FlashCardsAutoMapperConfig()
         {
-            // Email template categories
+            //FlashCard
+            CreateMap<FlashCard, FlashCardDetails>();
+
+            CreateMap<FlashCardDetails, UpdateFlashCardCommand>();
+
+            // FlashCardCategory
             CreateMap<FlashCardCategory, FlashCardCategoryOverview>();
             CreateMap<FlashCardCategory, FlashCardCategoryDetails>();
+
             CreateMap<FlashCardCategoryDetails, UpdateFlashCardCategoryCommand>();
         }
     }

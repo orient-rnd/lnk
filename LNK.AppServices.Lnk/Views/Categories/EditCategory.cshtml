@@ -4,7 +4,7 @@
 
 <div class="row" style="top:0%; margin-bottom:0px">   
     <div class="col s12 center-align">
-        <a href="#!" class="modal-action modal-close right " style="color:#ad1457 "><i class="material-icons">close</i></a>
+        <a class="modal-action modal-close right " style="color:#ad1457 "><i class="material-icons">close</i></a>
     </div>
     <div class="lighten-4 row" style="margin-bottom:auto; inline-block; padding: 0px 48px 30px 48px;" >
         <div class="modal-dialog center">
@@ -24,7 +24,7 @@
                     <div class='row'>
                         <div class="input-field col s12">
                             @Html.TextBoxFor(it => it.Name, new { @class = "validate", autocomplete = "off", WriteAttributeValue = Model.Name })
-                            <label class="active" name_category">Name's Category</label>
+                            <label class="active" for="name_category">Name's Category</label>
                         </div>
                         @Html.HiddenFor(it => it.UserEmail)
                         @Html.HiddenFor(it => it.UserId)

@@ -12,7 +12,7 @@ using LNK.Commands.FlashCards;
 
 namespace LNK.CommandHandlers.FlashCards
 {
-    public class FlashCardCommandHandler
+    public class FlashCardCommandHandler: ICommandHandler<UpdateFlashCardCommand>
     {
         private readonly IMapper _mapper;
         private readonly IMongoDbWriteRepository _writeRepository;
@@ -23,6 +23,17 @@ namespace LNK.CommandHandlers.FlashCards
         {
             _mapper = mapper;
             _writeRepository = writeRepository;
+        }
+
+        public void Handle (UpdateFlashCardCommand command)
+        {
+            var flashCard = _writeRepository.Get<FlashCard>(command.Id);
+            Contract.Assert(flashCard != null);
+
+            _mapper.Map(command, flashCard);
+
+            _writeRepository.Replace<FlashCard>(flashCard);
+
         }
     }
 }

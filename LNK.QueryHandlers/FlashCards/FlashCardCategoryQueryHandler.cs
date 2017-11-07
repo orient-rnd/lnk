@@ -62,9 +62,9 @@ namespace LNK.QueryHandlers.FlashCards
                 return null;
             }
 
-            var FlashCardCategory = _readRepository.Find(filter).FirstOrDefault();
-            var FlashCardCategoryDetails = _mapper.Map<FlashCardCategoryDetails>(FlashCardCategory);
-            return FlashCardCategoryDetails;
+            var flashCardCategory = _readRepository.Find(filter).FirstOrDefault();
+            var flashCardCategoryDetails = _mapper.Map<FlashCardCategoryDetails>(flashCardCategory);
+            return flashCardCategoryDetails;
         }
 
     }
