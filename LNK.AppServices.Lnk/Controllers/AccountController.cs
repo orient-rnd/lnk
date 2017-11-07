@@ -217,5 +217,36 @@ namespace LNK.AppServices.Lnk.Controllers
             mail.Body = massege;
             client.Send(mail);
         }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            var cp = new ChangePasswordModel();
+            return View(cp);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel cp)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userService.FindByEmailAsync(User.Identity.Name).Result;
+                if (user != null)
+                {
+                    var change = _userService.ChangePasswordAsync(user, cp.CurrentPassword, cp.NewPassword).Result;
+                    if (change.Succeeded)
+                    {
+                        cp.ChangePasswordSuccess = true;
+                        ViewBag.Confirm = "Your password was changed successfully.";
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Cannot change your password";
+                    }
+                }
+            }
+
+            return View(cp);
+        }
     }
 }

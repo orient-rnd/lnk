@@ -21,5 +21,7 @@ namespace LNK.AppServices.Lnk.Models.Account
         [Required]
         [Compare("NewPassword")]
         public string ConfirmNewPassword { get; set; }
+
+        public bool ChangePasswordSuccess { get; set; } = false;
     }
 }

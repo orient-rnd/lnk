@@ -46,9 +46,10 @@
                 {
                     @*<li><a href="~/Account/Logout" title="Logout"><i class="material-icons">person</i></a></li>*@
                     <li>
-                        <a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
+                        <a class='dropdown-button' data-beloworigin="true" data-hover="true" href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
                         <ul id='dropdown1' class='dropdown-content'>
-                            <li><a asp-controller="Account" asp-action="Edit">Edit User</a></li>
+                            <li style="font-size:5px;"><a asp-controller="Account" asp-action="Edit">Edit User</a></li>
+                            <li style="font-size:5px;"><a asp-controller="Account" asp-action="ChangePassword">Change password</a></li>
                             <li><a href="~/Account/Logout">Logout</a></li>
                         </ul>
                     </li>
@@ -68,27 +69,35 @@
                 <li><a href="~/Pronounce">Pronounce</a></li>
                 @if (user != null)
                 {
-                @*<li><a href="#" title="Logout"><i class="material-icons" data-activates='dropdown1'>person</i></a></li> //~/Account/Logout*@
+                    @*<li><a href="#" title="Logout"><i class="material-icons" data-activates='dropdown1'>person</i></a></li> //~/Account/Logout*@
                       <!-- Dropdown Trigger -->
-                <li>
-                    <a class="material-icons" href='#' data-activates='dropdown1'>person</a>
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="#!">Edit User</a></li>
-                        <li><a href="#!">Logout</a></li>
-                    </ul>
-                </li>
                     @*<li>
-                        <a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
-                        <ul id='dropdown1' class='dropdown-content'>
+                            <a class="material-icons" href='#' data-activates='dropdown1'>person</a>
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="#!">Edit User</a></li>
+                                <li><a href="#!">Logout</a></li>
+                            </ul>
+                        </li>*@
+                    <li>
+                        <a class='dropdown-button' data-beloworigin="true" data-hover="true" href='#' data-activates='dropdown2'><i class="material-icons">person</i></a>
+                        <ul id='dropdown2' class='dropdown-content'>
                             <li><a asp-controller="Account" asp-action="Edit">Edit User</a></li>
+                            <li><a href="#">Change password</a></li>
                             <li><a href="~/Account/Logout">Logout</a></li>
                         </ul>
-                    </li>*@
+                    </li>
+                    @*<li>
+                            <a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons">person</i></a>
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a asp-controller="Account" asp-action="Edit">Edit User</a></li>
+                                <li><a href="~/Account/Logout">Logout</a></li>
+                            </ul>
+                        </li>*@
   <!-- Dropdown Structure -->
                 }
                 else
                 {
-                <li><a href="~/Account/login">Login</a></li>
+                    <li><a href="~/Account/login">Login</a></li>
                 }
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -155,6 +164,13 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-42446070-5');
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+            $('.modal').modal('open');
+        });
     </script>
 </body>
 </html>
