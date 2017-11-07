@@ -34,7 +34,6 @@ namespace LNK.QueryHandlers.FlashCards
         {
             var builder = Builders<FlashCard>.Filter;
             var filter = builder.Empty;
-
             if (!String.IsNullOrEmpty(query.CategoryId))
             {
                 filter = filter & builder.Eq(it => it.FlashCardCategoryId, query.CategoryId);
@@ -128,7 +127,6 @@ namespace LNK.QueryHandlers.FlashCards
             return FlashCardOverviews;
         }
 
-
         public IEnumerable<SuggestionWord> Handle(GetAllSuggestionWordsQuery query)
         {
             var result = new List<SuggestionWord>();
@@ -169,5 +167,6 @@ namespace LNK.QueryHandlers.FlashCards
 
             return result.Take(15);
         }
+
     }
 }

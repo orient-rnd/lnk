@@ -20,6 +20,6 @@ namespace LNK.Commands.FlashCards
 
         public bool IsRandom { get; set; }
 
-        public int DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }       
     }
 }

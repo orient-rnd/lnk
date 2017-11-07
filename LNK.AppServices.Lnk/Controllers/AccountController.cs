@@ -14,6 +14,7 @@ using LNK.Commands.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using LNK.Domain.Users.Models;
+using System.Net.Mail;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,7 +44,6 @@ namespace LNK.AppServices.Lnk.Controllers
             _emailService = emailService;
             _commandHandler = commandHandler;
         }
-
 
         public ActionResult Register()
         {
@@ -75,7 +75,6 @@ namespace LNK.AppServices.Lnk.Controllers
             ViewBag.response = userResponse;
             return View();
         }
-
 
         public ActionResult Login()
         {
@@ -143,11 +142,12 @@ namespace LNK.AppServices.Lnk.Controllers
         {
             ViewBag.temp = true;
             string newPassword = "Huycautac1995";//default password
-            var user =  _userService.FindByEmailAsync(model.UserName).Result;
+            var user = _userService.FindByEmailAsync(model.UserName).Result;
             if (user != null)
-            { 
-                var token =  _userService.GeneratePasswordResetTokenAsync(user).Result;
-                var result = _userService.ResetPasswordAsync(user, token, newPassword).Result;
+            {
+                var token = _userService.GeneratePasswordResetTokenAsync(user).Result;
+                //var result = _userService.ResetPasswordAsync(user, token, newPassword).Result;
+                SendMail(user.Email, "Confirm forget password", token);
                 ModelState.AddModelError("Email", "We had sent a request to your email to change your password. Please check it!");
             }
             else
@@ -155,8 +155,8 @@ namespace LNK.AppServices.Lnk.Controllers
                 ModelState.AddModelError("Email", "We had sent a request to your email to change your password. Please check it!");
                 return View(model);
             }
-            
-            
+
+
             return View(model);
         }
 
@@ -170,7 +170,7 @@ namespace LNK.AppServices.Lnk.Controllers
         [HttpGet]
         [Authorize]
         public ActionResult Edit()
-        {           
+        {
             var user = _userService.FindByEmailAsync(User.Identity.Name).Result;
             if (user == null)
             {
@@ -187,6 +187,35 @@ namespace LNK.AppServices.Lnk.Controllers
             var user = _mapper.Map<User, UpdateUserCommand>(com);
             _commandHandler.Handle(user);
             return View(com);
+        }
+
+
+        private void SendMail(string email, string title, string massege)
+        {
+            //SmtpClient client = new SmtpClient("smtp.live.com");
+            //client.UseDefaultCredentials = false;
+            //client.Credentials = new NetworkCredential("kennytran1983@hotmail.com", "123456aA");
+            //client.Port = 587;
+
+            //MailMessage mailMessage = new MailMessage();
+            //mailMessage.From = new MailAddress("kennytran1983@hotmail.com");
+            //mailMessage.To.Add(email);
+            //mailMessage.Body = massege;
+            //mailMessage.Subject = title;
+            //client.Send(mailMessage);
+
+            MailMessage mail = new MailMessage(new MailAddress("kennytran1983@hotmail.com"), new MailAddress(email.Trim()));
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            //client.Host = "smtp.gmail.com";
+            client.Host = "smtp.live.com";
+            client.Credentials = new System.Net.NetworkCredential("kennytran1983@hotmail.com", "123456aA");
+            client.EnableSsl = true;
+            mail.Subject = title;
+            mail.Body = massege;
+            client.Send(mail);
         }
 
         [HttpGet]

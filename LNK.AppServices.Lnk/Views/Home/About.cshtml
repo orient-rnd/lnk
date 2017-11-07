@@ -1,4 +1,14 @@
-﻿<div style="margin-top: 50px;">
+﻿@using LNK.AppServices.Lnk.Models.Home;
+
+@model List<Team>
+@{
+    ViewData["Title"] = "Login";
+    var modelState = ViewData.ModelState;
+
+    var errors = ViewData.ModelState.Where(n => n.Value.Errors.Count > 0).ToList();
+}
+
+<div style="margin-top: 50px;">
     <div class="container">
         <div class="row">
             <div class="col s12 center-align flow-text"><h2>About LNK Team</h2>
@@ -13,156 +23,71 @@
                 <span>Do you want to improve your English vocabulary? LNK offers a comprehensive platform where you can start to compose your own dictionary. It works easily, so also for anyone without technical knowledge. By using flashcard system, it will help users to memorize new words.</span>
         </div>
     </div>
-    <h4 class="col s12 center-align abouttitle" style="margin-top: 50px">Our development team</h4>
-    <div class="row">
-        <div class="col s12 xl6">
-            <div class="card-panel grey lighten-5 hoverable">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img src="~/images/profiles/anhloc.jpg" alt="" class="circle responsive-img aboutimgsize">
-                    </div>
-                    <div class="col s7 offset-s1">
-                        <span class="flow-text aboutname">
-                            <strong>Loc Nguyen</strong>
-                        </span>
-                        <div>
-                            <span>
-                                <strong>Position: </strong>Founder
-                            </span>
+    @foreach (var item in Model)
+    {
+        <h4 class="col s12 center-align abouttitle" style="margin-top: 50px">@item.Name</h4>
+        <div class="row">
+            @foreach (var itemProfile in item.Profiles)
+        {
+            <div class="col s12 xl6">
+                <div class="card-panel grey lighten-5 hoverable">
+                    <div class="row valign-wrapper">
+                        <div class="col s5">
+                            <img src="@itemProfile.Img" alt="" class="circle responsive-img aboutimgsize">
                         </div>
-                        <div>
-                            <span>
-                                <strong>Activity Time: </strong>1/2016 - 3/2018
+                        <div class="col s7 ">
+                            <span class="flow-text aboutname">
+                                <strong>@itemProfile.Name</strong>
                             </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 xl6">
-            <div class="card-panel grey lighten-5 z-depth-3 hoverable">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img src="~/images/profiles/huy.jpg" alt="" class="circle responsive-img aboutimgsize">
-                    </div>
-                    <div class="col s7 offset-s1">
-                        <span class="flow-text aboutname">
-                            <strong>Huy Tran</strong>
-                        </span>
-                        <div>
-                            <span>
-                                <strong>Position: </strong>Full stack developer
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <strong>Activity Time: </strong>11/2017 - 3/2018
-                            </span>
+                            <div>
+                                <span>
+                                    <strong>Position: </strong>@itemProfile.Position
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    <strong>Activity Time: </strong>@itemProfile.Time
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+        }
         </div>
-    </div>
-    <div class="row">
-        <div class="col s12 xl6">
-            <div class="card-panel grey lighten-5 z-depth-3 hoverable">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img src="~/images/profiles/logan.jpg" alt="" class="circle responsive-img aboutimgsize">
-                    </div>
-                    <div class="col s7 offset-s1">
-                        <span class="flow-text aboutname">
-                            <strong>Logan Mai</strong>
-                        </span>
-                        <div>
-                            <span>
-                                <strong>Position: </strong>Front-end developer
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <strong>Activity Time: </strong>11/2017 - 3/2018
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 xl6">
-            <div class="card-panel grey lighten-5 z-depth-3 hoverable">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img src="~/images/profiles/son.jpg" alt="" class="circle responsive-img aboutimgsize">
-                    </div>
-                    <div class="col s7 offset-s1">
-                        <span class="flow-text aboutname">
-                            <strong>Mr. Mount</strong>
-                        </span>
-                        <div>
-                            <span>
-                                <strong>Position: </strong>Full stack developer
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <strong>Activity Time: </strong>11/2017 - 3/2018
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 xl6">
-            <div class="card-panel grey lighten-5 z-depth-3 hoverable">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img src="~/images/profiles/duc.jpg" alt="" class="circle responsive-img aboutimgsize">
-                    </div>
-                    <div class="col s7 offset-s1">
-                        <span class="flow-text aboutname">
-                            <strong>Duke Pham</strong>
-                        </span>
-                        <div>
-                            <span>
-                                <strong>Position: </strong>Full stack developer
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <strong>Activity Time: </strong>11/2017 - 3/2018
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 xl6">
-            <div class="card-panel grey lighten-5 z-depth-3 hoverable">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img src="~/images/profiles/thu.jpg" alt="" class="circle responsive-img aboutimgsize">
-                    </div>
-                    <div class="col s7 offset-s1">
-                        <span class="flow-text aboutname">
-                            <strong>Thu Nguyen</strong>
-                        </span>
-                        <div>
-                            <span>
-                                <strong>Position: </strong>Full stack developer
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <strong>Activity Time: </strong>11/2017 - 3/2018
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
+<p id="back-top">
+    <a href="#top"><i class="small material-icons">arrow_upward</i></a>
+</p>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // hide #back-top first
+        $("#back-top").hide();
+
+        // fade in #back-top
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('#back-top').fadeIn();
+                } else {
+                    $('#back-top').fadeOut();
+                }
+            });
+
+            // scroll body to 0px on click
+            $('#back-top a').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+        });
+
+    });
+</script>
 

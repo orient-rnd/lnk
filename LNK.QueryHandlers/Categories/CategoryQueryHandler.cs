@@ -7,6 +7,7 @@ using LNK.Domain.Categories.Models;
 using LNK.Infrastructure.MongoDb;
 using LNK.Infrastructure.Queries;
 using LNK.Queries.Categories;
+using LNK.Domain.FlashCards.Models;
 
 namespace LNK.QueryHandlers.Package
 {
@@ -62,7 +63,7 @@ namespace LNK.QueryHandlers.Package
             {
                 filter = filter & builder.Eq(it => it.Id, query.Id);
             }
-            
+
             if (filter == builder.Empty)
             {
                 return null;
@@ -84,5 +85,7 @@ namespace LNK.QueryHandlers.Package
             var CategoryOverviews = _mapper.Map<IEnumerable<CategoryOverview>>(packageCategories.ToList());
             return CategoryOverviews;
         }
+
+      
     }
 }

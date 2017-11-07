@@ -12,6 +12,8 @@ using LNK.Infrastructure.Commands;
 using LNK.AppServices.Lnk.Services;
 using LNK.AppServices.Core.Configs;
 using LNK.Domain.Users.Models;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Http;
 
 namespace LNK.AppServices.Lnk
 {
@@ -58,6 +60,11 @@ namespace LNK.AppServices.Lnk
                 options.SlidingExpiration = true;
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
             services.AddMvc()
                 .AddJsonOptions(options =>
                 {
@@ -66,8 +73,11 @@ namespace LNK.AppServices.Lnk
 
             services.AddScoped<ICommandBus, AdminPanelCommandBus>();
 
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddSession();
 
+           
             return DIConfig.ConfigureServices(services, Configuration);
         }
 
@@ -87,7 +97,15 @@ namespace LNK.AppServices.Lnk
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
             app.UseSession();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc(routes =>
             {

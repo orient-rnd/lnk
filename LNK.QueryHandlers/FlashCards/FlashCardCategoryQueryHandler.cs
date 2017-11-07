@@ -7,10 +7,12 @@ using LNK.Domain.FlashCards.Models;
 using LNK.Infrastructure.MongoDb;
 using LNK.Infrastructure.Queries;
 using LNK.Queries.FlashCards;
+using LNK.Queries.Categories;
 
 namespace LNK.QueryHandlers.FlashCards
 {
     public class FlashCardCategoryQueryHandler :
+        IQueryHandler<GetFlashCardCategoryInfoQuery, FlashCardCategoryInfoOverview>,
         IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>,
         IQueryHandler<GetAllFlashCardCategoriesQuery, IEnumerable<FlashCardCategoryOverview>>,
         IQueryHandler<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>
@@ -57,7 +59,7 @@ namespace LNK.QueryHandlers.FlashCards
             {
                 filter = filter & builder.Eq(it => it.Id, query.Id);
             }
-            
+
             if (filter == builder.Empty)
             {
                 return null;
@@ -78,6 +80,21 @@ namespace LNK.QueryHandlers.FlashCards
 
             var FlashCardCategoryOverviews = _mapper.Map<IEnumerable<FlashCardCategoryOverview>>(FlashCardCategories.ToList());
             return FlashCardCategoryOverviews;
+        }
+
+        public FlashCardCategoryInfoOverview Handle(GetFlashCardCategoryInfoQuery query)
+        {
+            var builder = Builders<FlashCardCategory>.Filter;
+            var filter = builder.Empty;
+
+            if (!String.IsNullOrEmpty(query.Id))
+            {
+                filter = filter & builder.Eq(it => it.Id, query.Id);
+            }
+
+            var Category = _readRepository.Find(filter).FirstOrDefault();
+            var CategoryDetails = _mapper.Map<FlashCardCategoryInfoOverview>(Category);
+            return CategoryDetails;
         }
     }
 }

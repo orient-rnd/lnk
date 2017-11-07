@@ -12,6 +12,8 @@ namespace LNK.Commands.FlashCards
 
         public string UserId { get; set; }
 
+        public string UserEmail { get; set; }
+
         public bool IsFaceAShowFirst { get; set; }
 
         public bool IsRandom { get; set; }

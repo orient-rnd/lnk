@@ -2,8 +2,25 @@
     ViewData["Title"] = "Vocabularies";
 }
 
+<!--------------------- Modal ------------------------>
+<!--************************************ Create *******************************************-->
+<div id="modalCreate" class="modal">
+   <div id="modalContentCreate"></div>
+</div>
 
-<div class="section no-pad-bot" id="index-banner">
+<!--********************************* Edit **********************************************-->
+
+<div id="modalEdit" class="modal">
+        <div id="modalContentEdit"></div>
+</div>
+
+<!--*******************************************************************************-->
+
+<div id="modalCreateFlashCard" class="modal">
+    <div id="modalContentCreateFlashCard"></div>
+</div>
+
+@*<div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
         <div class="row center">
@@ -25,6 +42,7 @@
             <br />
             <div class="row center">
                 <button href="#" type="submit" id="download-button" class="btn-large waves-effect waves-light orange">Search</button>
+                
             </div>
         </form>
         <br><br><br><br><br><br><br><br>
@@ -34,10 +52,36 @@
 
 <div class="container">
     <div class="section">
-
-        <!--   Icon Section   -->
-
-
     </div>
     <br><br>
-</div>
+</div>*@
+
+<form asp-action="Create">
+    <div class="box-body">
+        <a class="waves-effect waves-light btn modal-trigger"  id="modalCreate" onclick="callModalCreate('@Url.Action("CreateCategory", "Categories")')">Create</a>
+        <a class="waves-effect waves-light btn modal-trigger"  id="modalEdit" onclick="callModalEdit('@Url.Action("EditCategory", "Categories",new { id="7ec3083bac28426fb7579cca05fa5cb6" })')">Edit</a>
+        <a class="waves-effect waves-light btn modal-trigger" id="modalCreateFlashCard" onclick="callModalCreateFlashCard('@Url.Action("CreateFlashCard", "FlashCards")')">Create Flashcard</a>
+    </div>
+</form>
+
+<script type="text/javascript">
+   
+    function callModalEdit(url) {
+        $('.modal').modal();
+        $('#modalContentEdit').load(url);
+        $('#modalEdit').modal('open');
+    }
+
+    function callModalCreate(url) {
+        $('.modal').modal();
+        $('#modalContentCreate').load(url);
+        $('#modalCreate').modal('open');
+    }
+
+    function callModalCreateFlashCard(url) {
+        $('.modal').modal();
+        $('#modalContentCreateFlashCard').load(url);
+        $('#modalCreateFlashCard').modal('open');
+    }
+
+</script>

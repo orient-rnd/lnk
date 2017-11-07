@@ -44,6 +44,10 @@ using LNK.CommandHandlers.Sentences;
 using LNK.Commands.Sentences;
 using LNK.Queries.Sentences;
 using LNK.QueryHandlers.Sentences;
+using LNK.CommandHandlers.FlashCards;
+using LNK.Commands.FlashCards;
+using LNK.QueryHandlers.FlashCards;
+using LNK.Queries.FlashCards;
 
 namespace LNK.AppServices.Core.Configs
 {
@@ -258,6 +262,8 @@ namespace LNK.AppServices.Core.Configs
             containerBuilder.RegisterType<CategoryQueryHandler>().As<IQueryHandler<ListCategoriesQuery, PagedQueryResult<CategoryOverview>>>();
             containerBuilder.RegisterType<CategoryQueryHandler>().As<IQueryHandler<GetCategoryDetailsQuery, CategoryDetails>>();
             containerBuilder.RegisterType<CategoryQueryHandler>().As<IQueryHandler<GetAllCategoriesQuery, IEnumerable<CategoryOverview>>>();
+
+
         }
 
         private static void ArticlesAutoMapperConfig(ContainerBuilder containerBuilder)
@@ -287,7 +293,16 @@ namespace LNK.AppServices.Core.Configs
 
         private static void FlashCardsAutoMapperConfig(ContainerBuilder containerBuilder)
         {
+            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<DeleteFlashcardCategoryCommand>>();
+            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<CreateFlashCardCommand>>();
+            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<CreateFlashCardCategoryCommand>>();
+            containerBuilder.RegisterType<FlashCardCategoryCommandHandler>().As<ICommandHandler<UpdateFlashCardCategoryCommand>>();
+            containerBuilder.RegisterType<FlashCardCommandHandler>().As<ICommandHandler<CreateFlashCardCommand>>();
 
+            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<GetFlashCardCategoryDetailsQuery, FlashCardCategoryDetails>>();
+            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<ListFlashCardCategoriesQuery, PagedQueryResult<FlashCardCategoryOverview>>>();
+            containerBuilder.RegisterType<FlashCardQueryHandler>().As<IQueryHandler<ListFlashCardsQuery, PagedQueryResult<FlashCardOverview>>>();
+            containerBuilder.RegisterType<FlashCardCategoryQueryHandler>().As<IQueryHandler<GetFlashCardCategoryInfoQuery, FlashCardCategoryInfoOverview>>();
         }
     }
 }
