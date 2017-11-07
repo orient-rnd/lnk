@@ -46,29 +46,34 @@ namespace LNK.AppServices.Lnk.FlashCardAPIs
             var queryFlashCard = new ListFlashCardsQuery() { CategoryId = id };
             var queryCategory = new GetFlashCardCategoryInfoQuery() { Id = id };
 
-            var flashCards = _queryBus.Send<ListFlashCardsQuery, PagedQueryResult<FlashCardOverview>>(queryFlashCard);
-            var categories = _queryBus.Send<GetFlashCardCategoryInfoQuery, FlashCardCategoryInfoOverview>(queryCategory);
-            List<FlashCardBrief> lstFlashCardResult = new List<FlashCardBrief>();
-            foreach (var item in flashCards.Items)
+            try {
+                var flashCards = _queryBus.Send<ListFlashCardsQuery, PagedQueryResult<FlashCardOverview>>(queryFlashCard);
+                var categories = _queryBus.Send<GetFlashCardCategoryInfoQuery, FlashCardCategoryInfoOverview>(queryCategory);
+                List<FlashCardBrief> lstFlashCardResult = new List<FlashCardBrief>();
+                foreach (var item in flashCards.Items)
+                {
+                    lstFlashCardResult.Add(
+                        new FlashCardBrief()
+                        {
+                            FaceA = item.FaceA,
+                            FaceB = item.FaceB,
+                            Order = item.DisplayOrder
+                        }
+                );
+                }
+                var result = new FlashCardFindByCategoryIdOverview()
+                {
+                    isRandom = categories.isRandom,
+                    isFaceAFirst = categories.isFaceAFirst,
+                    Items = lstFlashCardResult
+                };
+                return Ok(result);
+            } catch
             {
-                lstFlashCardResult.Add(
-                    new FlashCardBrief()
-                    {
-                        FaceA = item.FaceA,
-                        FaceB = item.FaceB,
-                        Order = item.DisplayOrder
-                    }
-            );
+                // write log in here
+                return Ok("False");
             }
-            var result = new FlashCardFindByCategoryIdOverview()
-            {
-                isRandom = categories.isRandom,
-                isFaceAFirst = categories.isFaceAFirst,
-                Items = lstFlashCardResult
-            };
 
-            ////var result = flashCards.Items;
-            return Ok(result);
         }
 
         // POST api/values
